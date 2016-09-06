@@ -28,9 +28,7 @@
         <link href="<?php echo $this->baseUrl('/css/jquery.nstSlider.css'); ?>" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="<?php echo $this->baseUrl('/css/main.css'); ?>">
         <link href="<?php echo $this->baseUrl('/css/responsive.css'); ?>" rel="stylesheet" type="text/css"/>
-
         <script src="<?php echo $this->baseUrl('/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js'); ?>"></script>
-
         <?php echo $this->headScript(); ?>
     </head>
 
@@ -76,19 +74,8 @@
                                 </button>
                                 <a class="navbar-brand" href="#"><img src="/img/logo_icon.png" alt=""/>Gear</a>
                             </div>
-                            <div class="collapse navbar-collapse" id="myNavbar">
-                                
+                            <div class="collapse navbar-collapse" id="myNavbar">                              
                                 <?php echo $this->topMenuHtml();?>
-<!--                                <ul class="nav navbar-nav">
-                                    <li class="active"><a href="/">Home</a></li>
-                                    <li><a href="#myModal" data-toggle="modal" data-target="#myModal">Catalog</a></li>
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Payment & Delivery</a></li>
-                                    <li><a href="#">News</a></li>
-                                    <li><a href="#">Support</a></li>
-                                    <li><a href="#">Contact Us</a></li>
-                                </ul>-->
-                                
                                 <ul class="nav navbar-nav navbar-right">
 
                                     <li><a href="#" id="shopingCart"><img src="/img/cart_icon.png" alt=""/> Inbox <span class="badge">42</span></a></li>
@@ -96,7 +83,6 @@
                             </div>
                         </nav>
                     </article>
-
                 </div>
             </section>
         </header>
@@ -148,31 +134,18 @@
             <div class="container">
                 <article class="navigation-bar">
                     <nav class="navbar navbar-inverse">
-
                         <div>
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="#">Home</a></li>
-                                <li><a href="#">Catalog</a></li>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Payment & Delivery</a></li>
-                                <li><a href="#">News</a></li>
-                                <li><a href="#">Support</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
+                                <?php echo $this->topMenuHtml();?>
                             <ul class="nav navbar-nav navbar-right socialNetwork">
                                 <li>
                                     <a href="#"><span class="fa fa-facebook" aria-hidden="true"></span></a>
                                     <a href="#"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
                                     <a href="#"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-
                                 </li>
-
-
                             </ul>
                         </div>
                     </nav>
                 </article>
-
             </div>
             <section class="payments">
                 <div class="container">
@@ -194,11 +167,8 @@
                             <li>
                                 <a href="">Gear © 2016 All Rights Reserved</a>
                             </li>  
-
-
                         </ul>
                     </div>
-
                 </div>
             </section>
             <section class="development ">
@@ -258,24 +228,6 @@
             ga('create', 'UA-XXXXX-X', 'auto');
             ga('send', 'pageview');
 
-
-//hack da bi se ispostovala pripadnost ovih elemenata u okviru main taga kao i njihov redosled
-
-            if ($(".getPrice").length) {
-                if ($(".getPrice").length >= 2) {
-                    $(".getPrice").eq(1).appendTo($("main"));
-                } else {
-                    $(".getPrice").appendTo($("main"));
-                }
-            }
-
-            if ($(".information").length) {
-                $(".information").appendTo($("main"));
-            }
-
-            if ($(".googleMap").length && !$(".location")) {
-                $(".googleMap").detach().insertAfter(".getPrice");
-            }
         </script>
     </body>
 

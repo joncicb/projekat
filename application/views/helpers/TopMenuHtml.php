@@ -20,7 +20,7 @@ class Zend_View_Helper_TopMenuHtml extends Zend_View_Helper_Abstract {
           $this->view->placeholder('topMenuHtml')->exchangeArray(array());
           $this->view->placeholder('topMenuHtml')->captureStart(); ?>
           
-        <ul class="nav navbar-right" id="main-menu">
+        <ul class="nav navbar-nav">
             <li>
                 <a href="<?php echo $this->view->baseUrl('/'); ?>">Home</a>
             </li>
@@ -31,9 +31,9 @@ class Zend_View_Helper_TopMenuHtml extends Zend_View_Helper_Abstract {
             </li>
              <?php }
             ?>
-            <li>
+<!--            <li>
                 <a href="<?php echo $this->view->baseUrl('/admin_dashboard/index'); ?>"><i class="fa fa-user"></i> Login</a>
-            </li>
+            </li>-->
         </ul>
 
 
