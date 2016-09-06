@@ -23,11 +23,39 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 					
 				)
 			),
-		);
+                    
+                        'AboutUsPage' => array(
+                                'title' => 'About Us Page',
+                                'subtypes' => array(
+                                )
+                        ),
+                        'ContactPage'=>array(
+                                'title'=>'Contact Page',
+                                'subtypes'=>array(
+
+                                )
+                        ),
+                        'CatalogPage'=>array(
+                                'title'=>'Catalog Page',
+                                'subtypes'=>array(
+                                        'CatalogPage' => 0
+                                )
+                        ),
+                        'NewsPage'=>array(
+                                'title'=>'News Page',
+                                'subtypes'=>array(
+                                         'NewsPage' => 0
+                                )
+                        ),
+        );
 		
 		$rootSitemapPageTypes = array(
 			'StaticPage' => 0,
-			'PhotoGalleriesPage' => 1
+                        'CatalogPage' => 1,
+                        'NewsPage' => 1,
+			'PhotoGalleriesPage' => 1,
+                        'AboutUsPage'=>1,
+                        'ContactPage'=>1,
 		);
 		
 		Zend_Registry::set('sitemapPageTypes', $sitemapPageTypes);
@@ -74,6 +102,55 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 					)
 				));
 			}
+                        if($sitemapPageMap['type']=='AboutUsPage'){
+                                $router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(//za rute koje nemaju parametre, moze i da se koristi za maskiranje putanje
+                                        $sitemapPageMap['url'],
+                                        array(
+                                                'controller' => 'aboutus',
+                                                'action' => 'index',
+                                                'sitemap_page_id'=>$sitemapPageId
+
+                                    )
+                                ));
+//                                $router->addRoute('member-route', new Zend_Controller_Router_Route(
+//                                $sitemapPageMap['url'] . '/member/:id/:member_slug',
+//                                array(
+//                                    'controller' => 'aboutus',
+//                                    'action' => 'member',
+//                                    'member_slug' => '', // ovo je default za member_slug
+//                                )
+//                            ));
+                                }
+                        if($sitemapPageMap['type']=='ContactPage'){
+                                $router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(//za rute koje nemaju parametre, moze i da se koristi za maskiranje putanje
+                                        $sitemapPageMap['url'],
+                                        array(
+                                                'controller' => 'contact',
+                                                'action' => 'index',
+                                                'sitemap_page_id'=>$sitemapPageId
+                                    )
+                                ));  
+                        }
+                        if($sitemapPageMap['type']=='CatalogPage'){
+                                $router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(//za rute koje nemaju parametre, moze i da se koristi za maskiranje putanje
+                                        $sitemapPageMap['url'],
+                                        array(
+                                                'controller' => 'catalog',
+                                                'action' => 'index',
+                                                'sitemap_page_id'=>$sitemapPageId
+                                    )
+                                ));  
+                        }
+                        if($sitemapPageMap['type']=='NewsPage'){
+                                $router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(//za rute koje nemaju parametre, moze i da se koristi za maskiranje putanje
+                                        $sitemapPageMap['url'],
+                                        array(
+                                                'controller' => 'news',
+                                                'action' => 'index',
+                                                'sitemap_page_id'=>$sitemapPageId
+                                    )
+                                ));  
+                        }
 		}
 	}
 }
