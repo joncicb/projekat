@@ -3,3 +3,32 @@ $sitemapPage = $this->sitemapPage;
 $this->headTitle($sitemapPage['title']);
 $this->headMeta()->appendName('description', $sitemapPage['description']);
 ?>
+
+<div id="highlighted">
+    <div class="container">
+        <div class="header">
+            <h2 class="page-title">
+                <span><?php echo $this->escape($sitemapPage['title'])?></span> 
+                <small><?php echo $this->escape($sitemapPage['description'])?></small>
+            </h2>
+        </div>
+    </div>
+</div>
+<div id="content">
+    <div class="container">
+        <!-- About -->
+        <div class="row">
+            <div class="col-md-8">
+                <!-- About company -->
+                <div class="block">
+                    <?php
+                    echo $sitemapPage['body'];
+                    ?>
+                </div>
+
+            </div>
+           
+        </div>
+    </div>
+</div>
+
