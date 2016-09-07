@@ -32,22 +32,22 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="first_name">First Name</label>  
+  <label class="col-md-4 control-label" for="model">Model</label>  
   <div class="col-md-4">
       <?php
-      echo $form->getElement('first_name')->setAttribs(array(
+      echo $form->getElement('model')->setAttribs(array(
           'class' => 'form-control input-md',
-          'placeholder'=>'enter product\'s first name',
-          'id'=>'first_name',
+          'placeholder'=>'enter product\'s model',
+          'id'=>'model',
           'required'=>'required'
       ));
       ?>
-  <span class="help-block">min 3 max 255 characters</span>  
+  <span class="help-block">min 3 max 20 characters</span>  
   </div>
   <div class="col-md-4">
-      <?php if ($form->getElement('first_name')->hasErrors()) { ?>
+      <?php if ($form->getElement('model')->hasErrors()) { ?>
           <div class="has-error">
-              <?php foreach ($form->getElement('first_name')->getMessages() as $message) { ?>
+              <?php foreach ($form->getElement('model')->getMessages() as $message) { ?>
                   <p class="help-block"><?php echo $this->escape($message); ?></p>
               <?php } ?>
           </div>
@@ -57,23 +57,49 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="last_name">Last Name</label>  
+  <label class="col-md-4 control-label" for="type">Part Type</label>  
   <div class="col-md-4">
       <?php
-      echo $form->getElement('last_name')->setAttribs(array(
+      echo $form->getElement('type')->setAttribs(array(
           'class' => 'form-control input-md',
-          'placeholder'=>'enter product\'s last name',
-          'id'=>'last_name',
+          'placeholder'=>'enter product\'s type',
+          'id'=>'type',
           'required'=>'required'
+      ));
+      ?>
+  
+  <span class="help-block">min 3 max 20 characters</span>  
+  </div>
+  <div class="col-md-4">
+      <?php if ($form->getElement('type')->hasErrors()) {?>
+      <div class="has-error">
+              <?php foreach ($form->getElement('type')->getMessages() as $message) { ?>
+                  <p class="help-block"><?php echo $this->escape($message); ?></p>
+              <?php } ?>
+          </div>
+      <?php } ?>
+  </div>
+</div>
+
+<!-- Text Area input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="description">Description</label>  
+  <div class="col-md-4">
+      <?php
+      echo $form->getElement('description')->setAttribs(array(
+          'class' => 'form-control input-md',
+          'placeholder'=>'enter product\'s description',
+          'id'=>'description',
+          'rows'=> 5
       ));
       ?>
   
   <span class="help-block">min 3 max 255 characters</span>  
   </div>
   <div class="col-md-4">
-      <?php if ($form->getElement('last_name')->hasErrors()) {?>
-      <div class="has-error">
-              <?php foreach ($form->getElement('last_name')->getMessages() as $message) { ?>
+      <?php if ($form->getElement('description')->hasErrors()) { ?>
+          <div class="has-error">
+              <?php foreach ($form->getElement('description')->getMessages() as $message) { ?>
                   <p class="help-block"><?php echo $this->escape($message); ?></p>
               <?php } ?>
           </div>
@@ -83,48 +109,23 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="email">Email</label>  
+  <label class="col-md-4 control-label" for="price">Price</label>  
   <div class="col-md-4">
       <?php
-      echo $form->getElement('email')->setAttribs(array(
+      echo $form->getElement('price')->setAttribs(array(
           'class' => 'form-control input-md',
-          'placeholder'=>'enter product\'s email',
-          'id'=>'email',
+          'placeholder'=>'enter product\'s price',
+          'id'=>'price',
           'required'=>'required'
       ));
       ?>
-  
-  <span class="help-block">username@domain</span>  
-  </div>
-  <div class="col-md-4">
-      <?php if ($form->getElement('email')->hasErrors()) { ?>
-          <div class="has-error">
-              <?php foreach ($form->getElement('email')->getMessages() as $message) { ?>
-                  <p class="help-block"><?php echo $this->escape($message); ?></p>
-              <?php } ?>
-          </div>
-      <?php } ?>
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="work_title">Work Title</label>  
-  <div class="col-md-4">
-      <?php
-      echo $form->getElement('work_title')->setAttribs(array(
-          'class' => 'form-control input-md',
-          'placeholder'=>'enter product\'s work title',
-          'id'=>'work_title'
-      ));
-      ?>
       
-  <span class="help-block">ex. "senior web developer"</span>  
+  <span class="help-block">0.00</span>  
   </div>
   <div class="col-md-4">
-      <?php if ($form->getElement('work_title')->hasErrors()) {?>
+      <?php if ($form->getElement('price')->hasErrors()) {?>
 <div class="has-error">
-	<?php foreach ($form->getElement('work_title')->getMessages() as $message) {?>
+	<?php foreach ($form->getElement('price')->getMessages() as $message) {?>
 	<p class="help-block"><?php echo $this->escape($message);?></p>
 	<?php }?>
 </div>
@@ -132,28 +133,32 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
   </div>
 </div>
 
-<!-- Textarea -->
+<!-- Text input-->
 <div class="form-group">
-    <label class="col-md-4 control-label" for="resume">Resume</label>
-    <div class="col-md-4">                     
-        <?php
-        echo $form->getElement('resume')->setAttribs(array(
-            'class' => 'form-control',
-            'id' => 'resume',
-            'rows'=> 12
-        ));
-        ?>
-    </div>
-    <div class="col-md-4">
-        <?php if ($form->getElement('resume')->hasErrors()) { ?>
-            <div class="has-error">
-                <?php foreach ($form->getElement('resume')->getMessages() as $message) { ?>
-                    <p class="help-block"><?php echo $this->escape($message); ?></p>
-                <?php } ?>
-            </div>
-        <?php } ?>  
-    </div>
+  <label class="col-md-4 control-label" for="quantity">Quantity</label>  
+  <div class="col-md-4">
+      <?php
+      echo $form->getElement('quantity')->setAttribs(array(
+          'class' => 'form-control input-md',
+          'placeholder'=>'enter product\'s quantity',
+          'id'=>'quantity'
+      ));
+      ?>
+      
+  <span class="help-block">0</span>  
+  </div>
+  <div class="col-md-4">
+      <?php if ($form->getElement('quantity')->hasErrors()) {?>
+<div class="has-error">
+	<?php foreach ($form->getElement('quantity')->getMessages() as $message) {?>
+	<p class="help-block"><?php echo $this->escape($message);?></p>
+	<?php }?>
 </div>
+<?php }?>
+  </div>
+</div>
+
+
 <div class="form-group">
     <label class="col-md-4 control-label" for="product_photo">Photo</label>
     <div class="col-md-4">                     
