@@ -38,7 +38,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                         'CatalogPage'=>array(
                                 'title'=>'Catalog Page',
                                 'subtypes'=>array(
-                                        'CatalogPage' => 0
+                                        
                                 )
                         ),
                         'NewsPage'=>array(
@@ -139,7 +139,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                 'action' => 'index',
                                                 'sitemap_page_id'=>$sitemapPageId
                                     )
-                                ));  
+                                ));
+                            $router->addRoute('product-item-route', new Zend_Controller_Router_Route(
+                                        $sitemapPageMap['url'] . '/:id/:product_item_slug',
+                                        array(
+                                                'controller' => 'catalog',
+                                                'action' => 'products',
+                                                'sitemap_page_id'=>$sitemapPageId
+                                            )
+                                        ));
                         }
                         if($sitemapPageMap['type']=='NewsPage'){
                                 $router->addRoute('static-page-route-' . $sitemapPageId, new Zend_Controller_Router_Route_Static(//za rute koje nemaju parametre, moze i da se koristi za maskiranje putanje
@@ -149,7 +157,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                 'action' => 'index',
                                                 'sitemap_page_id'=>$sitemapPageId
                                     )
-                                ));  
+                                ));
+                                $router->addRoute('news-item-route', new Zend_Controller_Router_Route(
+                                        $sitemapPageMap['url'] . '/:id/:news_item_slug',
+                                        array(
+                                                'controller' => 'catalog',
+                                                'action' => 'newsItem',
+                                                'sitemap_page_id'=>$sitemapPageId
+                                            )
+                                        ));
                         }
 		}
 	}

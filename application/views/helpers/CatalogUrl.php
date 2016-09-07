@@ -11,4 +11,13 @@ class Zend_View_Helper_CatalogUrl extends Zend_View_Helper_Abstract
         ), 'catalog-route', true);
         
     }
+    public function productItemUrl($productItem) {
+        
+        return $this->view->url(array(
+            'id' => $productItem['id'],
+            'product_item_slug' => $productItem['title']
+            
+        ), 'product-item-route', true);
+        
+    }
 }
