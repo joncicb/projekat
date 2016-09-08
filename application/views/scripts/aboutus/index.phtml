@@ -4,30 +4,22 @@ $this->headTitle($sitemapPage['title']);
 $this->headMeta()->appendName('description', $sitemapPage['description']);
 ?>
 
-<div id="highlighted">
+<main>
     <div class="container">
-        <div class="header">
-            <h2 class="page-title">
-                <span><?php echo $this->escape($sitemapPage['title'])?></span> 
-                <small><?php echo $this->escape($sitemapPage['description'])?></small>
-            </h2>
-        </div>
-    </div>
-</div>
-<div id="content">
-    <div class="container">
-        <!-- About -->
-        <div class="row">
-            <div class="col-md-8">
-                <!-- About company -->
-                <div class="block">
-                    <?php
-                    echo $sitemapPage['body'];
-                    ?>
-                </div>
 
-            </div>
-           
+        <article>
+            <ol class="breadcrumb">
+                <li><a href="<?php echo $this->baseUrl('/'); ?>">Home</a></li>
+                <?php foreach ($this->breadcrumb as $breadcrumb) { ?>
+                    <li><a href=""><?php echo $breadcrumb['short_title']; ?></a></li>
+                <?php } ?>
+            </ol>
+        </article>
+        <div class="header-a">
+            <?php echo $this->escape($sitemapPage['title']); ?>
         </div>
+        <p>
+            <?php echo $sitemapPage['body']; ?>
+        </p>
     </div>
-</div>
+</main>

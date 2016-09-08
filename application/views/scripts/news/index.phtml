@@ -3,17 +3,17 @@ $sitemapPage = $this->sitemapPage;
 $this->headTitle($sitemapPage['title']);
 //$this->headMeta()->appendName('description', $sitemapPage['description']);
 ?>
-<section class="bredcrumbs">
 
             <div class="container">
                 <article>
                     <ol class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">News</a></li>
+                        <li><a href="<?php echo $this->baseUrl('/'); ?>">Home</a></li>
+                        <?php foreach ($this->breadcrumb as $breadcrumb) { ?>
+                            <li><a href=""><?php echo $breadcrumb['short_title']; ?></a></li>
+                        <?php } ?>
                     </ol>
                 </article>
-            </div>
-        </section>
+            </div>       
         <main>
             <section class="news newsPage">
                 <div class="container">

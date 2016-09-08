@@ -38,7 +38,9 @@ class PhotogalleriesController extends Zend_Controller_Action
 				'order_number' => 'ASC'
 			)
 		));
-		
+                $sitemapPageBreadcrumbs = $cmsSitemapPageDbTable->getSitemapPageBreadcrumbs($sitemapPageId);
+                
+		$this->view->breadcrumb = $sitemapPageBreadcrumbs;
 		$this->view->sitemapPage = $sitemapPage;
 		$this->view->photoGalleries = $photoGalleries;
 	}
@@ -88,7 +90,10 @@ class PhotogalleriesController extends Zend_Controller_Action
 				'order_number' => 'ASC'
 			)
 		));
-		
+                
+		$sitemapPageBreadcrumbs = $cmsSitemapPageDbTable->getSitemapPageBreadcrumbs($sitemapPageId);
+                
+		$this->view->breadcrumb = $sitemapPageBreadcrumbs;
 		$this->view->sitemapPage = $sitemapPage;
 		$this->view->photoGallery = $photoGallery;
 		$this->view->photos = $photos;

@@ -4,20 +4,20 @@ $photoGalleries = $this->photoGalleries;
 $this->headTitle($this->sitemapPage['title']);
 $this->headMeta()->appendName('description', $this->sitemapPage['description']);
 ?>
-<div id="highlighted">
-			<div class="container">
-                            <?php echo $this->headTitle('Photo Galleries');?>
-				<div class="header">
-					<h2 class="page-title">
-                                    <span><?php echo $this->escape($sitemapPage['title']); ?></span> 
-                                    <small><?php echo $this->escape($sitemapPage['description']); ?></small>
-					</h2>
-				</div>
-			</div>
-		</div>
-		<div id="content">
+<main>
+    <div class="container">
+
+        <article>
+            <ol class="breadcrumb">
+                <li><a href="<?php echo $this->baseUrl('/'); ?>">Home</a></li>
+                <?php foreach ($this->breadcrumb as $breadcrumb) { ?>
+                    <li><a href=""><?php echo $breadcrumb['short_title']; ?></a></li>
+                <?php } ?>
+            </ol>
+        </article>
+        
+        <div id="content">
 			<div class="">
-				
 				<ul class="thumbnails row block projects" id="quicksand">
                                     <?php foreach ($photoGalleries as $photoGallery) { ?>
 					<li class="col-md-4" data-id="1" data-type="print">
@@ -26,9 +26,9 @@ $this->headMeta()->appendName('description', $this->sitemapPage['description']);
 								<a class="lnk-polaroid" href="<?php echo $this->photoGalleryUrl($photoGallery); ?>">
 									<img src="<?php echo $this->photoGalleryLeadingPhotoUrl($photoGallery); ?>" alt="<?php echo $this->escape($photoGallery['title']); ?>" class="img-polaroid img-responsive" />
 								</a>
-								<h3 class="title">
+								<h4 class="title">
 									<a href="<?php echo $this->photoGalleryUrl($photoGallery); ?>"><?php echo $this->escape($photoGallery['title']); ?></a>
-								</h3>
+								</h4>
 								<p class="muted"><?php echo $this->escape($photoGallery['description']); ?></p>
 							</div>
 						</div>
@@ -37,3 +37,8 @@ $this->headMeta()->appendName('description', $this->sitemapPage['description']);
 				</ul>
 			</div>
 		</div>
+    </div>
+</main>
+
+
+		

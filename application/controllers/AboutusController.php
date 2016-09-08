@@ -32,7 +32,10 @@ class AboutusController extends Zend_Controller_Action
         ){
             throw new Zend_Controller_Router_Exception('No Sitemap Page is disabled: ' . $sitemapPageId, 404);
         }
-
+        
+        $sitemapPageBreadcrumbs = $cmsSitemapPageDbTable->getSitemapPageBreadcrumbs($sitemapPageId);
+        
+        $this->view->breadcrumb = $sitemapPageBreadcrumbs;
         $this->view->sitemapPage = $sitemapPage;
 
     }

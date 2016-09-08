@@ -30,7 +30,10 @@ class StaticpageController extends Zend_Controller_Action
 		) {
 			throw new Zend_Controller_Router_Exception('Sitemap page is disabled', 404);
 		}
-		
+		$sitemapPageBreadcrumbs = $cmsSitemapPageDbTable->getSitemapPageBreadcrumbs($sitemapPageId);
+                
+                
 		$this->view->sitemapPage = $sitemapPage;
+                $this->view->breadcrumb = $sitemapPageBreadcrumbs;
 	}
 }
