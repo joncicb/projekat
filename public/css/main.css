@@ -230,6 +230,8 @@ a.navbar-brand{
 }
 .carousel-control.right, .carousel-control.left{
     background-image: none;
+    top: 40%;
+    font-size: 50px;
 }
 .carousel-caption-right{
     background: #195fad;
@@ -248,7 +250,7 @@ article.container-fluid{
     top: -40px;
 }
 .carousel-inner {
-    border-top: 4px solid black;
+    border-top: none;
 }
 
 
@@ -357,23 +359,23 @@ section.goods .buttons .btn{
     box-shadow: 0 0 2px #ccc;
 }
 .goods article.items figure > a{
-   height: 210px;
-   display: block;
-   position: relative;
-   overflow: hidden;
+    height: 210px;
+    display: block;
+    position: relative;
+    overflow: hidden;
 }
 .goods article.items figure > a > img{
-   position: absolute;
-   width: auto;
-   max-width: 100%;
-   height: auto;
-   max-height: 100%;
-   top:0;
-   left:0;
-   right:0;
-   bottom:0;
-   margin: auto;
-   transition: 1s;
+    position: absolute;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin: auto;
+    transition: 1s;
 }
 .goods article.items figure > a:hover > img{
     transform: scale(1.1);
@@ -397,7 +399,7 @@ section.goods .items{
 section.goods .items figure{
     margin-top: 35px;
     position: relative;
-    
+
 }
 section.goods .items figure span{
     position: absolute;
@@ -662,7 +664,7 @@ section.news figure.newsItem figcaption button:last-of-type:hover{
 /* Portfolio Section */
 .portfolio{
     padding: 53px 0 60px 0;
-    border-top: 1px solid black;
+
 }
 .portfolio figure img{
     width:100%;
@@ -1568,4 +1570,15 @@ main.registration div.tab-content form#registratinFormFirm select.form-control +
 
 .modal-backdrop {
     z-index: 0;
+}
+
+
+
+
+.block-title{
+    margin-top: -40px;
+}
+
+.carousel-control{
+    opacity: 1!important;
 }
