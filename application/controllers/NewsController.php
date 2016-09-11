@@ -1,15 +1,13 @@
 <?php
 
-class NewsController extends Zend_Controller_Action
-{
+class NewsController extends Zend_Controller_Action {
 
-    public function init()
-    {
+    public function init() {
         /* Initialize action controller here */
     }
 
-    public function indexAction()
- {
+    public function indexAction() {
+
         $request = $this->getRequest();
 
         $sitemapPageId = (int) $request->getParam('sitemap_page_id');
@@ -35,16 +33,29 @@ class NewsController extends Zend_Controller_Action
         ) {
             throw new Zend_Controller_Router_Exception('Sitemap page is disabled', 404);
         }
+
+        $cmsNewsDbTable = new Application_Model_DbTable_CmsNews();
+        $news = $cmsNewsDbTable->search(array(
+            'filters' => array(
+                'status' => Application_Model_DbTable_CmsNews::STATUS_ENABLED
+            ),
+            'orders' => array(
+                'order_number' => 'ASC'
+            ),
+            'limit' => 6
+        ));
         $sitemapPageBreadcrumbs = $cmsSitemapPageDbTable->getSitemapPageBreadcrumbs($sitemapPageId);
 
-
-        $this->view->sitemapPage = $sitemapPage;
         $this->view->breadcrumb = $sitemapPageBreadcrumbs;
+        $this->view->sitemapPage = $sitemapPage;
+        $this->view->news = $news;
+
     }
 
-    public function newsItemAction()
-    {
-        
+    public function newAction() {
+        /* Initialize action controller here */
     }
+
 }
+
 

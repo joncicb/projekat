@@ -95,10 +95,17 @@ $user = Zend_Auth::getInstance()->getIdentity();
 						<li>
                             <a href="<?php echo $this->url(array('controller' => 'admin_sitemap'), 'default', true);?>"><i class="fa fa-sitemap fa-fw"></i> Sitemap</a>
                         </li>
-						<li>
+                        </li>
+                        <li>
+                            <a href="<?php echo $this->url(array('controller' => 'admin_services'), 'default', true);?>"><i class="fa fa-cog fa-fw"></i> Services</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $this->url(array('controller' => 'admin_news'), 'default', true);?>"><i class="fa fa-newspaper-o fa-fw"></i> News</a>
+                        </li>
+			<li>
                             <a href="<?php echo $this->url(array('controller' => 'admin_filemanager'), 'default', true);?>"><i class="fa fa-files-o fa-fw"></i> Filemanager</a>
                         </li>
-						<li>
+			<li>
                             <a href="<?php echo $this->url(array('controller' => 'admin_users'), 'default', true);?>"><i class="fa fa-user fa-fw"></i> Users</a>
                         </li>
                     </ul>
