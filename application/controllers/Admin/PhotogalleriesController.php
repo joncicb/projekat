@@ -18,12 +18,12 @@ class Admin_PhotogalleriesController extends Zend_Controller_Action
 		
 		$photoGalleries = $cmsPhotoGalleriesDbTable->search(array(
 			//'filters' => array(
-			//	'status' => Application_Model_DbTable_CmsPhotoGalleries::STATUS_ENABLED
+				//'status' => Application_Model_DbTable_CmsPhotoGalleries::STATUS_ENABLED
 			//),
 			'orders' => array(
 				'order_number' => 'ASC'
 			),
-			//'limit' => 4,
+			//'limit' => 6,
 			//'page' => 2
 		));
 		

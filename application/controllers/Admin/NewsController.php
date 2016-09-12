@@ -9,8 +9,18 @@ class Admin_NewsController extends Zend_Controller_Action {
         );
 
         $cmsNewsDbTable = new Application_Model_DbTable_CmsNews();
-
-        $news = $cmsNewsDbTable->search();
+        $news = $cmsNewsDbTable->search(array(
+            //'filters' => array(
+            //'description_search'=> 'ideja'
+            
+            //),
+            'orders' => array(//sortiram tabelu po
+                'order_number'=>'ASC'
+            ),
+            //'limit' => 4,
+            //'page' => 2
+        ));
+        
         $this->view->news = $news;
         $this->view->systemMessages = $systemMessages;
     }

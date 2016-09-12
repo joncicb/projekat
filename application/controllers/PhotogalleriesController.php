@@ -35,8 +35,10 @@ class PhotogalleriesController extends Zend_Controller_Action
 				'status' => Application_Model_DbTable_CmsPhotoGalleries::STATUS_ENABLED
 			),
 			'orders' => array(
-				'order_number' => 'ASC'
-			)
+				'order_number' => 'ASC',
+                            ),
+                                'limit' => 6,
+			
 		));
                 $sitemapPageBreadcrumbs = $cmsSitemapPageDbTable->getSitemapPageBreadcrumbs($sitemapPageId);
                 
