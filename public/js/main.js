@@ -94,8 +94,8 @@ sirinaNewsImg = parseInt(sirina);
     
 function init_map(){
     var myOptions = {
-        zoom:14,
-        center:new google.maps.LatLng(44.831193,20.610080),
+        zoom:12,
+        center:new google.maps.LatLng(44.7914044,20.478586899999982),
         scrollwheel: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -103,10 +103,10 @@ function init_map(){
     myOptions);
     marker = new google.maps.Marker({
         map: map,
-        position: new google.maps.LatLng(44.831193,20.410080)
+        position: new google.maps.LatLng(44.7914044,20.478586899999982)
     });
     infowindow = new google.maps.InfoWindow({
-        content:'<strong>Cubes</strong> <br>Belgrade,<br>Bul. Mihajla Pupina 181'});
+        content:'<strong>Auto Extra ltd</strong> <br>Belgrade,<br>Gospodara Vucica 33'});
     google.maps.event.addListener(
             marker,
     'click',

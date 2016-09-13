@@ -33,11 +33,11 @@ $this->headTitle($sitemapPage['title']);
                                     </div>
                                 </div>
 
-                                    <button type="button" class="btn items"><?php echo $this->escape($oneNews['date']); ?></button>
-                                    <button type="button" class="btn items"> View Article <?php echo $this->escape($oneNews['title']); ?></button>
+                                    <button type="button" class="btn items date"><?php echo $this->escape($oneNews['date']); ?></button>
+                                    <button type="button" class="btn items article"> View Article <?php echo $this->escape($oneNews['title']); ?></button>
                                     <br>
-                                    <span><?php echo $this->escape($oneNews['description']); ?>
-                                    </span>
+                                   <p><span><?php echo $this->escape($oneNews['description']); ?>
+                                    </span></p>
 
                                 
                             </figure>

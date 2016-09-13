@@ -147,8 +147,8 @@ a.navbar-brand {
 }
  .formWrapp {
     top: 10%;
-    left: 20%;
-    right: 40%;
+    left: 60%;
+    right: 10%;
 }
 #gmap_canvas{
     max-height:800px;

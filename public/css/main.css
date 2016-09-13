@@ -109,6 +109,10 @@ a.navbar-brand{
 .navbar li:hover a{
     text-decoration: underline;
 }
+
+
+
+
 .navigation{
     position: relative;
     z-index:100;
@@ -1581,4 +1585,44 @@ main.registration div.tab-content form#registratinFormFirm select.form-control +
 
 .carousel-control{
     opacity: 1!important;
+}
+.breadcrumb{
+    background-color: transparent;
+
+}
+
+
+.date{
+    background-color:  #999;
+    color:white;
+    margin-top: 10px;
+    cursor:  default;
+}
+.date:hover{
+    background-color: white;
+    color:#999;
+    border: 1px solid #999;
+}
+.article{
+    background: transparent;
+    color: #005db4;
+    border: 1px solid #bfddf4;
+    margin-top: 10px;
+}
+.article:hover{
+    background-color:  #e9e612;
+    color:#000;
+}
+
+.back-link{
+    background: transparent;
+    color: #005db4;
+    border: 1px solid #bfddf4;
+    margin-top: 10px;
+    padding: 6px;
+    font-size: 14px;
+}
+.back-link:hover{
+    background-color:  #e9e612;
+    color:#000;
 }
