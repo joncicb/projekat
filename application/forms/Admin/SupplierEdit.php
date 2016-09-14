@@ -1,5 +1,5 @@
 <?php
-class Application_Form_Admin_ClientEdit extends Zend_Form
+class Application_Form_Admin_SupplierEdit extends Zend_Form
 {
 
     public function init() {
@@ -17,8 +17,8 @@ class Application_Form_Admin_ClientEdit extends Zend_Form
                 ->setRequired(false);
         $this->addElement($description);
         
-        $clientPhoto = new Zend_Form_Element_File('client_photo');
-        $clientPhoto->addValidator('Count', true, 1) 
+        $supplierPhoto = new Zend_Form_Element_File('supplier_photo');
+        $supplierPhoto->addValidator('Count', true, 1) 
                 ->addValidator('MimeType', true, array('image/gif', 'image/jpeg', 'image/png'))
                 ->addValidator('ImageSize', false, array(
                     'minwidth' => 170,
@@ -31,7 +31,7 @@ class Application_Form_Admin_ClientEdit extends Zend_Form
                     ))
                 ->setValueDisabled(true);
         
-        $this->addElement($clientPhoto);
+        $this->addElement($supplierPhoto);
         
     }
     

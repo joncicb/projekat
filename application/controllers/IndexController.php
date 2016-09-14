@@ -20,16 +20,33 @@ class IndexController extends Zend_Controller_Action
 				'order_number' => 'ASC'
 			)
 		));
+                $cmsSuppliersDbTable = new Application_Model_DbTable_CmsSuppliers();
+                $suppliers = $cmsSuppliersDbTable->search(array(
+			'filters' => array(
+				'status' => Application_Model_DbTable_CmsSuppliers::STATUS_ENABLED
+			),
+			'orders' => array(
+				'order_number' => 'ASC'
+			)
+		));
                 $cmsSitemapPagesDbTable = new Application_Model_DbTable_CmsSitemapPages();
-		
+		$servicesSitemapPages = $cmsSitemapPagesDbTable->search(array(
+                'filters' => array(
+                'status' => Application_Model_DbTable_CmsSitemapPages::STATUS_ENABLED,
+                'type' => 'ServicesPage'
+			),
+                'limit' => 1
+		));
                 $newsSitemapPages = $cmsSitemapPagesDbTable->search(array(
                     'filters' => array(
                     'status' => Application_Model_DbTable_CmsSitemapPages::STATUS_ENABLED,
-                    'type' => 'NewsPage'
+                    'type' => 'NewsPage',
                                 ),
                     'limit' => 1
                         ));
-
+                $servicesSitemapPage = !empty($servicesSitemapPages) ? $servicesSitemapPages[0] : null;
+        
+                $cmsServicesDbTable = new Application_Model_DbTable_CmsServices();
                 $newsSitemapPage = !empty($newsSitemapPages) ? $newsSitemapPages[0] : null;
 
                 $cmsNewsDbTable = new Application_Model_DbTable_CmsNews();
@@ -44,10 +61,24 @@ class IndexController extends Zend_Controller_Action
                     'limit' => 6,
                     //'page' => 2
                 ));
-		
+                
+		$services = $cmsServicesDbTable->search(array(
+                'filters' => array(
+                'status'=>  Application_Model_DbTable_CmsServices::STATUS_ENABLED,
+
+                ),
+                'orders' => array(//sortiram tabelu po
+                'order_number'=>'ASC'
+                ),
+                'limit' => 4,
+                //'page' => 2
+                ));
+                $this->view->suppliers = $suppliers;
                 $this->view->news = $news;
                 $this->view->newsSitemapPage = $newsSitemapPage;
 		$this->view->indexSlides = $indexSlides;
+                $this->view->services = $services;
+                $this->view->servicesSitemapPage = $servicesSitemapPage;
     }
 }
 

@@ -2,6 +2,8 @@
 $sitemapPage = $this->sitemapPage;
 $indexSlides=$this->indexSlides;
 $news = $this->news;
+$services = $this->services;
+$servicesSitemapPage = $this->servicesSitemapPage;
 $this->headTitle($sitemapPage['title']);
 //$this->headMeta()->appendName('description', $sitemapPage['description']);
 ?>
@@ -370,10 +372,7 @@ $this->headTitle($sitemapPage['title']);
                     <span id="go-left" class="glyphicon glyphicon-menu-left"></span>
                     <span id="go-right" class="glyphicon glyphicon-menu-right"></span>
 
-
-
                 </div>
-
             </div>
         </div>
     </section>
@@ -391,68 +390,34 @@ $this->headTitle($sitemapPage['title']);
                     </article>
                 </div>
             </div>
-            <div class="pumpRide text-center"><h3>Pump your ride with our services</h3></div>
+            <div class="pumpRide text-center"><?php if ($this->servicesSitemapPage) {?><a href="<?php echo $this->sitemapPageUrl($this->servicesSitemapPage['id']);?>"><h3>Pump your ride with our services</h3></a><?php }?></div>
+		
+                
         </div>
     </section>
     <section class="pumpOptions">
+        
         <div class="container">
+           <?php foreach ($services as $service) {
+                    ?> 
             <div class="row">
+                
                 <div class="col-sm-6 col-md-3">
                     <article class="part center-block">
 
                         <figure>
-                            <img class="center-block" src="img/devices_icon.png" alt=""/>
+                            <h3 class="title">
+                            
+                        </h3>
                             <figcaption class="text-center">
-                                <a href="#"><h3>Devices</h3></a>
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
-                                    Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney 
-                                    College in Virginia, looked up one of the more obscure Latin words.</p>
+                                <a href="#"><h3><i class="<?php echo $this->escape($service['icon']); ?>"></i> <?php echo $this->escape($service['title']); ?></h3></a>
+                                <p><?php echo $this->escape($service['description']); ?></p>
                             </figcaption>
                         </figure>
                     </article>
                 </div>
-                <div class="col-sm-6 col-md-3">
-                    <article class="part center-block">
-
-                        <figure>
-                            <img class="center-block" src="img/chip_icon.png" alt=""/>
-                            <figcaption class="text-center">
-                                <a href="#"><h3>Devices</h3></a>
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
-                                    Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney 
-                                    College in Virginia, looked up one of the more obscure Latin words.</p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <article class="part center-block">
-
-                        <figure>
-                            <img class="center-block" src="img/sock_icon.png" alt=""/>
-                            <figcaption class="text-center">
-                                <a href="#"><h3>Devices</h3></a>
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
-                                    Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney 
-                                    College in Virginia, looked up one of the more obscure Latin words.</p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <article class="part center-block">
-
-                        <figure>
-                            <img class="center-block" src="img/wheels_icon.png" alt=""/>
-                            <figcaption class="text-center">
-                                <a href="#"><h3>Devices</h3></a>
-                                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
-                                    Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney 
-                                    College in Virginia, looked up one of the more obscure Latin words.</p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </div>
+                <?php }
+                        ?>
             </div>
         </div>
     </section>
@@ -537,8 +502,8 @@ $this->headTitle($sitemapPage['title']);
             <div class="formContact">
                 <div class="adress">
                     <h2>Contact Us</h2>
-                    <h3>1-800-987-0654 321</h3>
-                    <p>SUNSET BLVD., BEVERLY HILLS, CA 90210</p>
+                    <h3>011 783 99 99</h3>
+                    <p>Gospodara Vucica 33, 11000 Belgrade, Serbia</p>
                 </div>
                 <form class="form-group">
                     <div class="row">

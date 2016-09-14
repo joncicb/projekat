@@ -1,6 +1,6 @@
 <?php
 
-class Admin_ClientsController extends Zend_Controller_Action {
+class Admin_SuppliersController extends Zend_Controller_Action {
 
     public function indexAction() {
         $flashMessenger = $this->getHelper('FlashMessenger');
@@ -10,11 +10,11 @@ class Admin_ClientsController extends Zend_Controller_Action {
             'errors' => $flashMessenger->getMessages('errors')
         );
         
-        $cmsClientsDbTable = new Application_Model_DbTable_CmsClients();
+        $cmsSuppliersDbTable = new Application_Model_DbTable_CmsSuppliers();
 
-        $clients = $cmsClientsDbTable->search(array(
+        $suppliers = $cmsSuppliersDbTable->search(array(
             //'filters' => array(//filtriram tabelu po
-            //'status'=>Application_Model_DbTable_CmsClients::STATUS_ENABLED,
+            //'status'=>Application_Model_DbTable_CmsSuppliers::STATUS_ENABLED,
             //'description_search' => 'farm'
             
             //),
@@ -24,15 +24,15 @@ class Admin_ClientsController extends Zend_Controller_Action {
             //'limit' => 4,
             //'page' => 2
         ));
-        //$select = $cmsClientsDbTable->select();
+        //$select = $cmsSuppliersDbTable->select();
 
         //$select->order('order_number');
         //debug za db select - vraca se sql upit
         //die($select->assemble());
 
-        //$clients = $cmsClientsDbTable->fetchAll($select);
+        //$suppliers = $cmsSuppliersDbTable->fetchAll($select);
 
-        $this->view->clients = $clients; //prosledjivanje rezultata
+        $this->view->suppliers = $suppliers; //prosledjivanje rezultata
         $this->view->systemMessages = $systemMessages;
     }
 
@@ -46,7 +46,7 @@ class Admin_ClientsController extends Zend_Controller_Action {
             'errors' => $flashMessenger->getMessages('errors')
         );
 
-        $form = new Application_Form_Admin_ClientAdd();
+        $form = new Application_Form_Admin_SupplierAdd();
 
         //default form data
         $form->populate(array(
@@ -57,53 +57,53 @@ class Admin_ClientsController extends Zend_Controller_Action {
 
                 //check form is valid
                 if (!$form->isValid($request->getPost())) {
-                    throw new Application_Model_Exception_InvalidInput('Invalid form data was sent for new client');
+                    throw new Application_Model_Exception_InvalidInput('Invalid form data was sent for new supplier');
                 }
 
                 //get form data
                 $formData = $form->getValues(); 
                 
-                //remove key client_photo form because there is no column client_photo in cms_client
-                unset($formData['client_photo']);
+                //remove key supplier_photo form because there is no column supplier_photo in cms_supplier
+                unset($formData['supplier_photo']);
                 
-                $cmsClientsTable = new Application_Model_DbTable_CmsClients();
+                $cmsSuppliersTable = new Application_Model_DbTable_CmsSuppliers();
                 
-                $clientId =  $cmsClientsTable->insertClient($formData);
+                $supplierId =  $cmsSuppliersTable->insertSuppliers($formData);
                 
-                if($form->getElement('client_photo')->isUploaded()) {
+                if($form->getElement('supplier_photo')->isUploaded()) {
                 //photo is uploaded
-                    $fileInfos = $form->getElement('client_photo')->getFileInfo('client_photo');
-                    $fileInfo=$fileInfos['client_photo'];
+                    $fileInfos = $form->getElement('supplier_photo')->getFileInfo('supplier_photo');
+                    $fileInfo=$fileInfos['supplier_photo'];
                     
                     try{
                       //open uploaded photo in temporary directory
-                     $clientPhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
+                     $supplierPhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
                      //dimenzionise sliku
-                     $clientPhoto->fit(170, 70);
+                     $supplierPhoto->fit(170, 70);
                      
-                     $clientPhoto->save(PUBLIC_PATH . '/uploads/clients/' . $clientId . '.jpg');
+                     $supplierPhoto->save(PUBLIC_PATH . '/uploads/suppliers/' . $supplierId . '.jpg');
                      
                     } catch (Exception $ex) {
-                        $flashMessenger->addMessage('Client has been saved, but error occured during image processing', 'errors');
+                        $flashMessenger->addMessage('Supplier has been saved, but error occured during image processing', 'errors');
                 //redirect to same or another page
                         $redirector = $this->getHelper('Redirector');
                         $redirector->setExit(true)
                             ->gotoRoute(array(
-                                'controller' => 'admin_clients',
+                                'controller' => 'admin_suppliers',
                                 'action' => 'edit',
-                                'id' => $clientId
+                                'id' => $supplierId
                                     ), 'default', true);  
                     }
                 }
                 // do actual task
                 //save to database etc
                 //set system message
-                $flashMessenger->addMessage('Client has been saved', 'success');
+                $flashMessenger->addMessage('Supplier has been saved', 'success');
                 //redirect to same or another page
                 $redirector = $this->getHelper('Redirector');
                 $redirector->setExit(true)
                         ->gotoRoute(array(
-                            'controller' => 'admin_clients',
+                            'controller' => 'admin_suppliers',
                             'action' => 'index'
                                 ), 'default', true);
             } catch (Application_Model_Exception_InvalidInput $ex) {
@@ -122,15 +122,15 @@ class Admin_ClientsController extends Zend_Controller_Action {
         
         if($id <= 0){
            
-            throw  new Zend_Controller_Router_Exception('Invalid client id: ' . $id, 404);
+            throw  new Zend_Controller_Router_Exception('Invalid supplier id: ' . $id, 404);
         }
         
-        $cmsClientsTable = new Application_Model_DbTable_CmsClients();
+        $cmsSuppliersTable = new Application_Model_DbTable_CmsSuppliers();
         
-        $client = $cmsClientsTable->getClientById($id);
+        $supplier = $cmsSuppliersTable->getSuppliersById($id);
         
-        if(empty($client)){
-            throw new Zend_Controller_Router_Exception('No client is found with id: ' . $id, 404);
+        if(empty($supplier)){
+            throw new Zend_Controller_Router_Exception('No supplier is found with id: ' . $id, 404);
         }
         
         $flashMessenger = $this->getHelper('FlashMessenger');
@@ -139,15 +139,15 @@ class Admin_ClientsController extends Zend_Controller_Action {
             'success' => $flashMessenger->getMessages('success'),
             'errors' => $flashMessenger->getMessages('errors')
         );
-        $form = new Application_Form_Admin_ClientEdit();
+        $form = new Application_Form_Admin_SupplierEdit();
         //default form data
-        $form->populate($client);
+        $form->populate($supplier);
       
         if ($request->isPost() && $request->getPost('task') === 'update') {
             try {
                 //check form is valid
                 if (!$form->isValid($request->getPost())) {
-                    throw new Application_Model_Exception_InvalidInput('Invalid data was sent for client.');
+                    throw new Application_Model_Exception_InvalidInput('Invalid data was sent for supplier.');
                 }
                 //get form data
                 $formData = $form->getValues();
@@ -156,22 +156,22 @@ class Admin_ClientsController extends Zend_Controller_Action {
                 //save to database etc
                 // Update postojeceg zapisa u tabeli
                 
-                unset($formData['client_photo']);
+                unset($formData['supplier_photo']);
                 
-                if($form->getElement('client_photo')->isUploaded()){
+                if($form->getElement('supplier_photo')->isUploaded()){
                 
                     // photo is uploaded
                     
-                    $fileInfos = $form->getElement('client_photo')->getFileInfo('client_photo');
-                    $fileInfo = $fileInfos['client_photo'];
+                    $fileInfos = $form->getElement('supplier_photo')->getFileInfo('supplier_photo');
+                    $fileInfo = $fileInfos['supplier_photo'];
                     
                     try{
                         // Open uploaded photo in temporary directory
-                        $clientPhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
+                        $supplierPhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
                         
-                        $clientPhoto->fit(170, 70);
+                        $supplierPhoto->fit(170, 70);
                         
-                        $clientPhoto->save(PUBLIC_PATH . '/uploads/clients/' . $client['id'] . '.jpg');
+                        $supplierPhoto->save(PUBLIC_PATH . '/uploads/suppliers/' . $supplier['id'] . '.jpg');
                        
                     } catch (Exception $ex) {
                         
@@ -180,15 +180,15 @@ class Admin_ClientsController extends Zend_Controller_Action {
                     }
                 }
                 
-                $cmsClientsTable->updateClient($client['id'], $formData);
+                $cmsSuppliersTable->updateSuppliers($supplier['id'], $formData);
 
                 //set system message
-                $flashMessenger->addMessage('Client has been updated', 'success');
+                $flashMessenger->addMessage('Supplier has been updated', 'success');
                 //redirect to same or another page
                 $redirector = $this->getHelper('Redirector');
                 $redirector->setExit(true)
                         ->gotoRoute(array(
-                            'controller' => 'admin_clients',
+                            'controller' => 'admin_suppliers',
                             'action' => 'index'
                                 ), 'default', true);
             } catch (Application_Model_Exception_InvalidInput $ex) {
@@ -198,7 +198,7 @@ class Admin_ClientsController extends Zend_Controller_Action {
         $this->view->systemMessages = $systemMessages;
         $this->view->form = $form;
         
-        $this->view->client = $client;
+        $this->view->supplier = $supplier;
     }
     public function deleteAction(){
         $request = $this->getRequest(); //dohvatamo request objekat
@@ -211,7 +211,7 @@ class Admin_ClientsController extends Zend_Controller_Action {
             $redirector = $this->getHelper('Redirector'); 
             $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_clients',
+                        'controller' => 'admin_suppliers',
                         'action' => 'index'
                             ), 'default', true);
         }
@@ -222,25 +222,25 @@ class Admin_ClientsController extends Zend_Controller_Action {
             $id = (int) $request->getPost('id'); 
 
             if ($id <= 0) {
-                throw new Application_Model_Exception_InvalidInput('Invalid client id: ' . $id);
+                throw new Application_Model_Exception_InvalidInput('Invalid supplier id: ' . $id);
                 
             }
 
-            $cmsClientsTable = new Application_Model_DbTable_CmsClients();
+            $cmsSuppliersTable = new Application_Model_DbTable_CmsSuppliers();
 
-            $client = $cmsClientsTable->getClientById($id);
+            $supplier = $cmsSuppliersTable->getSuppliersById($id);
 
-            if (empty($client)) {
-                throw new Application_Model_Exception_InvalidInput('No client is found with id: ' . $id);
+            if (empty($supplier)) {
+                throw new Application_Model_Exception_InvalidInput('No supplier is found with id: ' . $id);
             }
 
-            $cmsClientsTable->deleteClient($id);
+            $cmsSuppliersTable->deleteSuppliers($id);
 
-            $flashMessenger->addMessage('Client : ' . $client['name'] . ' has been deleted', 'success');
+            $flashMessenger->addMessage('Supplier : ' . $supplier['name'] . ' has been deleted', 'success');
             $redirector = $this->getHelper('Redirector'); 
             $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_clients',
+                        'controller' => 'admin_suppliers',
                         'action' => 'index'
                             ), 'default', true);
         } catch (Application_Model_Exception_InvalidInput $ex) {
@@ -249,7 +249,7 @@ class Admin_ClientsController extends Zend_Controller_Action {
             $redirector = $this->getHelper('Redirector'); 
             $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_clients',
+                        'controller' => 'admin_suppliers',
                         'action' => 'index'
                             ), 'default', true);
         } 
@@ -265,7 +265,7 @@ class Admin_ClientsController extends Zend_Controller_Action {
             $redirector = $this->getHelper('Redirector'); 
             $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_clients',
+                        'controller' => 'admin_suppliers',
                         'action' => 'index'
                             ), 'default', true);
         }
@@ -276,25 +276,25 @@ class Admin_ClientsController extends Zend_Controller_Action {
             $id = (int) $request->getPost('id');
 
             if ($id <= 0) {
-                throw new Application_Model_Exception_InvalidInput('Invalid client id: ' . $id);
+                throw new Application_Model_Exception_InvalidInput('Invalid supplier id: ' . $id);
                 
             }
 
-            $cmsClientsTable = new Application_Model_DbTable_CmsClients();
+            $cmsSuppliersTable = new Application_Model_DbTable_CmsSuppliers();
 
-            $client = $cmsClientsTable->getClientById($id);
+            $supplier = $cmsSuppliersTable->getSuppliersById($id);
 
-            if (empty($client)) {
-                throw new Application_Model_Exception_InvalidInput('No client is found with id: ' . $id);
+            if (empty($supplier)) {
+                throw new Application_Model_Exception_InvalidInput('No supplier is found with id: ' . $id);
             }
 
-            $cmsClientsTable->disableClient($id);
+            $cmsSuppliersTable->disableSuppliers($id);
 
-            $flashMessenger->addMessage('Client : ' . $client['name'] .  ' has been disabled', 'success');
+            $flashMessenger->addMessage('Supplier : ' . $supplier['name'] .  ' has been disabled', 'success');
             $redirector = $this->getHelper('Redirector'); 
             $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_clients',
+                        'controller' => 'admin_suppliers',
                         'action' => 'index'
                             ), 'default', true);
         } catch (Application_Model_Exception_InvalidInput $ex) {
@@ -303,7 +303,7 @@ class Admin_ClientsController extends Zend_Controller_Action {
             $redirector = $this->getHelper('Redirector');
             $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_clients',
+                        'controller' => 'admin_suppliers',
                         'action' => 'index'
                             ), 'default', true);
         } 
@@ -320,7 +320,7 @@ class Admin_ClientsController extends Zend_Controller_Action {
             $redirector = $this->getHelper('Redirector'); 
             $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_clients',
+                        'controller' => 'admin_suppliers',
                         'action' => 'index'
                             ), 'default', true);
         }
@@ -331,25 +331,25 @@ class Admin_ClientsController extends Zend_Controller_Action {
             $id = (int) $request->getPost('id');
 
             if ($id <= 0) {
-                throw new Application_Model_Exception_InvalidInput('Invalid client id: ' . $id);
+                throw new Application_Model_Exception_InvalidInput('Invalid supplier id: ' . $id);
                 
             }
 
-            $cmsClientsTable = new Application_Model_DbTable_CmsClients();
+            $cmsSuppliersTable = new Application_Model_DbTable_CmsSuppliers();
 
-            $client = $cmsClientsTable->getClientById($id);
+            $supplier = $cmsSuppliersTable->getSuppliersById($id);
 
-            if (empty($client)) {
-                throw new Application_Model_Exception_InvalidInput('No client is found with id: ' . $id);
+            if (empty($supplier)) {
+                throw new Application_Model_Exception_InvalidInput('No supplier is found with id: ' . $id);
             }
 
-            $cmsClientsTable->enableClient($id);
+            $cmsSuppliersTable->enableSuppliers($id);
 
-            $flashMessenger->addMessage('Client : ' . $client['name'] .  ' has been enabled', 'success');
+            $flashMessenger->addMessage('Supplier : ' . $supplier['name'] .  ' has been enabled', 'success');
             $redirector = $this->getHelper('Redirector'); 
             $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_clients',
+                        'controller' => 'admin_suppliers',
                         'action' => 'index'
                             ), 'default', true);
         } catch (Application_Model_Exception_InvalidInput $ex) {
@@ -358,7 +358,7 @@ class Admin_ClientsController extends Zend_Controller_Action {
             $redirector = $this->getHelper('Redirector'); 
             $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_clients',
+                        'controller' => 'admin_suppliers',
                         'action' => 'index'
                             ), 'default', true);
         } 
@@ -374,7 +374,7 @@ class Admin_ClientsController extends Zend_Controller_Action {
             $redirector = $this->getHelper('Redirector');
             $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_clients',
+                        'controller' => 'admin_suppliers',
                         'action' => 'index'
                             ), 'default', true);
         }
@@ -398,16 +398,16 @@ class Admin_ClientsController extends Zend_Controller_Action {
             
             $sortedIds = explode(',', $sortedIds);
             
-            $cmsClientsTable = new Application_Model_DbTable_CmsClients();
+            $cmsSuppliersTable = new Application_Model_DbTable_CmsSuppliers();
             
-            $cmsClientsTable->updateOrderOfClients($sortedIds);
+            $cmsSuppliersTable->updateOrderOfSuppliers($sortedIds);
             
             $flashMessenger->addMessage('Order is successfully saved', 'success');
             
             $redirector = $this->getHelper('Redirector'); 
             $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_clients',
+                        'controller' => 'admin_suppliers',
                         'action' => 'index'
                             ), 'default', true);
             
@@ -418,7 +418,7 @@ class Admin_ClientsController extends Zend_Controller_Action {
             $redirector = $this->getHelper('Redirector');
             $redirector->setExit(true)
                     ->gotoRoute(array(
-                        'controller' => 'admin_clients',
+                        'controller' => 'admin_suppliers',
                         'action' => 'index'
                             ), 'default', true);
         }
@@ -426,17 +426,17 @@ class Admin_ClientsController extends Zend_Controller_Action {
 
     public function dashboardAction() {
         
-        $cmsClientsDbTable = new Application_Model_DbTable_CmsClients();
+        $cmsSuppliersDbTable = new Application_Model_DbTable_CmsSuppliers();
 
-        $enabled = $cmsClientsDbTable->count(array(
-        'status'=>Application_Model_DbTable_CmsClients::STATUS_ENABLED,
+        $enabled = $cmsSuppliersDbTable->count(array(
+        'status'=>Application_Model_DbTable_CmsSuppliers::STATUS_ENABLED,
         //'name'=>'dosen'        
                 ));
         
-        $allClients =$cmsClientsDbTable->count();
+        $allSuppliers =$cmsSuppliersDbTable->count();
         
-        $this->view->enabledClients = $enabled;
-        $this->view->allClients = $allClients;
+        $this->view->enabledSuppliers = $enabled;
+        $this->view->allSuppliers = $allSuppliers;
     }
     
 }

@@ -1,17 +1,17 @@
 <?php
 
-class Application_Model_DbTable_CmsClients extends Zend_Db_Table_Abstract {
+class Application_Model_DbTable_CmsSuppliers extends Zend_Db_Table_Abstract {
 
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 0;
 
-    protected $_name = 'cms_clients';
+    protected $_name = 'cms_suppliers';
 
     /**
      * @param iny $id
-     * return null|array Associative array with keys as cms_clients table columns or NULL if not found
+     * return null|array Associative array with keys as cms_suppliers table columns or NULL if not found
      */
-    public function getClientById($id) {
+    public function getSuppliersById($id) {
 
         $select = $this->select();
         $select->where('id = ?', $id);
@@ -28,23 +28,23 @@ class Application_Model_DbTable_CmsClients extends Zend_Db_Table_Abstract {
     }
     /**
      * @param type  int $id
-     * @param array $client Associative array with keys at column names and values as column new values
+     * @param array $suppliers Associative array with keys at column names and values as column new values
      */
-    public function updateClient($id, $client) {
-        if (isset($client['id'])) {
+    public function updateSuppliers($id, $suppliers) {
+        if (isset($suppliers['id'])) {
             //forbid changing of user id
-            unset($client['id']);
+            unset($suppliers['id']);
         }
         
-        $this->update($client, 'id = ' . $id);
+        $this->update($suppliers, 'id = ' . $id);
     }
     /**
      * 
-     * @param array $client Associative array with keys at column names and values as column new values
-     * @return int The ID of new client (autoincrement)
+     * @param array $suppliers Associative array with keys at column names and values as column new values
+     * @return int The ID of new suppliers (autoincrement)
      */
-    public function insertClient($client) {
-       //fetch order number of new client
+    public function insertSuppliers($suppliers) {
+       //fetch order number of new suppliers
         $select = $this->select();
         
         //Sort rows by order_number Descending and fetch one row from the top
@@ -52,55 +52,55 @@ class Application_Model_DbTable_CmsClients extends Zend_Db_Table_Abstract {
         
         $this->fetchRow($select);
         
-        $clientWithBiggestOrderNumber = $this->fetchRow($select);
+        $suppliersWithBiggestOrderNumber = $this->fetchRow($select);
         
-        if($clientWithBiggestOrderNumber instanceof Zend_Db_Table_Row){
+        if($suppliersWithBiggestOrderNumber instanceof Zend_Db_Table_Row){
             
-            $client['order_number'] = $clientWithBiggestOrderNumber['order_number'] + 1;
+            $suppliers['order_number'] = $suppliersWithBiggestOrderNumber['order_number'] + 1;
         }else {
-            // table was empty, we are inserting first client
-            $client['order_number'] = 1;
+            // table was empty, we are inserting first suppliers
+            $suppliers['order_number'] = 1;
         }
 
-        $id = $this->insert($client);
+        $id = $this->insert($suppliers);
         
         return $id;
     }
     /**
      * 
-     * @param int $id ID of client to delete
+     * @param int $id ID of suppliers to delete
      */
-    public function deleteClient($id){
+    public function deleteSuppliers($id){
         
-        //client who is going to be deleted
-        $client = $this->getClientById($id);
+        //suppliers who is going to be deleted
+        $suppliers = $this->getSuppliersById($id);
         
         $this->update(array(
             'order_number' => new Zend_Db_Expr('order_number -1')  
         ), 
-            'order_number > ' . $client['order_number']);
+            'order_number > ' . $suppliers['order_number']);
         
         $this->delete('id = ' . $id);
     }
     /**
      * 
-     * @param int $id ID of client to disable
+     * @param int $id ID of suppliers to disable
      */
-    public function disableClient($id){
+    public function disableSuppliers($id){
         $this->update(array(
             'status' =>  self::STATUS_DISABLED
         ),'id = ' . $id);
     }
     /**
      * 
-     * @param int $id ID of client to enable
+     * @param int $id ID of suppliers to enable
      */
-    public function enableClient($id){
+    public function enableSuppliers($id){
         $this->update(array(
             'status' =>  self::STATUS_ENABLED
         ),'id = ' . $id);
     }
-    public function updateOrderOfClients($sortedIds){
+    public function updateOrderOfSuppliers($sortedIds){
         foreach($sortedIds as $orderNumber => $id){
             $this->update(array(
             'order_number' =>  $orderNumber + 1 

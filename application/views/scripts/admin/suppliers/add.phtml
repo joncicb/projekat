@@ -1,10 +1,10 @@
 <?php
-$this->headTitle('Clients - New Client');
+$this->headTitle('Suppliers - New Supplier');
 $form = $this->form;
 $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
 ?>
 <div class="page-header">
-    <h1>Clients <small>New Client</small></h1>
+    <h1>Suppliers <small>New Supplier</small></h1>
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -17,9 +17,9 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
             <div class="panel-heading text-right">
                 <div class="btn-group" role="group" aria-label="...">
                     <a 
-                        href='<?php echo $this->url(array('controller'=>'admin_clients', 'action'=>'index'), 'default', true) ?>' 
+                        href='<?php echo $this->url(array('controller'=>'admin_suppliers', 'action'=>'index'), 'default', true) ?>' 
                        class="btn btn-default"
-                       ><i class="glyphicon glyphicon-arrow-left"></i>Back to all clients</a>
+                       ><i class="glyphicon glyphicon-arrow-left"></i>Back to all suppliers</a>
                 
 </div></div>
             <div class="panel-body">
@@ -28,16 +28,16 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
 <fieldset>
 
 <!-- Form Name -->
-<legend>New Client</legend>
+<legend>New Supplier</legend>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="name">Client Name</label>  
+  <label class="col-md-4 control-label" for="name">Supplier Name</label>  
   <div class="col-md-4">
       <?php
       echo $form->getElement('name')->setAttribs(array(
           'class' => 'form-control input-md',
-          'placeholder'=>'enter client\'s name',
+          'placeholder'=>'enter supplier\'s name',
           'id'=>'name',
           'required'=>'required'
       ));
@@ -78,14 +78,14 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
     </div>
 </div>
 <div class="form-group">
-    <label class="col-md-4 control-label" for="client_photo">Photo</label>
+    <label class="col-md-4 control-label" for="supplier_photo">Photo</label>
     <div class="col-md-4">                     
-        <input type="file" name="client_photo" id="client_photo" class="btn btn-default btn-file">
+        <input type="file" name="supplier_photo" id="supplier_photo" class="btn btn-default btn-file">
     </div>
     <div class="col-md-4">
-        <?php if ($form->getElement('client_photo')->hasErrors()) { ?>
+        <?php if ($form->getElement('supplier_photo')->hasErrors()) { ?>
             <div class="has-error">
-                <?php foreach ($form->getElement('client_photo')->getMessages() as $message) { ?>
+                <?php foreach ($form->getElement('supplier_photo')->getMessages() as $message) { ?>
                     <p class="help-block"><?php echo $this->escape($message); ?></p>
                 <?php } ?>
             </div>
@@ -95,10 +95,10 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
 
 <!-- Button (Double) -->
 <div class="form-group text-right">
-  <label class="col-md-4 control-label" for="new_client_cancel"></label>
+  <label class="col-md-4 control-label" for="new_supplier_cancel"></label>
   <div class="col-md-8">
-    <a href="<?php echo $this->url(array('controller' =>'admin_clients', 'action'=>'index'), 'default', true); ?>" id="new_client_cancel" name="new_client_cancel" class="btn btn-default">Cancel</a>
-    <button type="submit" id="new_client_submit" name="new_client_submit" class="btn btn-success">Save</button>
+    <a href="<?php echo $this->url(array('controller' =>'admin_suppliers', 'action'=>'index'), 'default', true); ?>" id="new_supplier_cancel" name="new_supplier_cancel" class="btn btn-default">Cancel</a>
+    <button type="submit" id="new_supplier_submit" name="new_supplier_submit" class="btn btn-success">Save</button>
   </div>
 </div>
 

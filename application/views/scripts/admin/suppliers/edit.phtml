@@ -1,11 +1,11 @@
 <?php
-$this->headTitle('Clients - Edit Client');
+$this->headTitle('Suppliers - Edit Supplier');
 $form = $this->form;
 $form->setElementDecorators(array('ViewHelper'));
 ?>
 
 <div class="page-header">
-    <h1>Clients <small>Edit Client</small></h1>
+    <h1>Suppliers <small>Edit Supplier</small></h1>
 </div>
 <div class="row">
     <div class="col-lg-12">
@@ -18,9 +18,9 @@ $form->setElementDecorators(array('ViewHelper'));
             <div class="panel-heading text-right" >
                 <div class="btn-group" role="group" aria-label="...">
                     <a 
-                        href="<?php echo $this->url(array('controller' => 'admin_clients', 'action' => 'index'), 'default', true); ?>" 
+                        href="<?php echo $this->url(array('controller' => 'admin_suppliers', 'action' => 'index'), 'default', true); ?>" 
                         class="btn btn-default"
-                        ><i class="glyphicon glyphicon-arrow-left"></i> Back to all clients</a>
+                        ><i class="glyphicon glyphicon-arrow-left"></i> Back to all suppliers</a>
                 </div>  
             </div>
             <div class="panel-body">
@@ -29,16 +29,16 @@ $form->setElementDecorators(array('ViewHelper'));
                     <fieldset>
 
                         <!-- Form Name -->
-                        <legend>Edit Client - <?php echo $this->escape($this->client['name']); ?></legend>
+                        <legend>Edit Supplier - <?php echo $this->escape($this->supplier['name']); ?></legend>
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="name">Clients name</label>  
+                            <label class="col-md-4 control-label" for="name">Suppliers name</label>  
                             <div class="col-md-4">
                                 <?php
                                 echo $form->getElement('name')->setAttribs(array(
                                     'class' => 'form-control input-md',
-                                    'placeholder' => 'enter client\'s  name',
+                                    'placeholder' => 'enter supplier\'s  name',
                                     'id' => 'name',
                                     'required' => 'required'
                                 ));
@@ -81,17 +81,17 @@ $form->setElementDecorators(array('ViewHelper'));
                         </div>
                         <!-- Photo -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="client_photo">Photo</label>
+                            <label class="col-md-4 control-label" for="supplier_photo">Photo</label>
                             <div class="col-md-4">    
 
                                 <div>
                                     <a href="#" class="thumbnail">
-                                        <img src="<?php echo $this->clientImgUrl($this->client); ?>">
+                                        <img src="<?php echo $this->supplierImgUrl($this->supplier); ?>">
                                     </a>
                                     <span class="help-block">Change Photo</span>   
                                 </div>
 
-                                <input type="file" name="client_photo" id="client_photo" class="btn btn-default btn-file">
+                                <input type="file" name="supplier_photo" id="supplier_photo" class="btn btn-default btn-file">
 
                             </div>
 
@@ -100,10 +100,10 @@ $form->setElementDecorators(array('ViewHelper'));
 
                         <!-- Button (Double) -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="new_client_cancel"></label>
+                            <label class="col-md-4 control-label" for="new_supplier_cancel"></label>
                             <div class="col-md-4 text-right">
-                                <a href="<?php echo $this->url(array('controller' => 'admin_clients', 'action' => 'index'), 'default', true); ?>" id="new_client_cancel" name="new_client_cancel" class="btn btn-default">Cancel</a>
-                                <button type="submit" id="new_client_submit" name="new_client_submit" class="btn btn-success">Save</button>
+                                <a href="<?php echo $this->url(array('controller' => 'admin_suppliers', 'action' => 'index'), 'default', true); ?>" id="new_supplier_cancel" name="new_supplier_cancel" class="btn btn-default">Cancel</a>
+                                <button type="submit" id="new_supplier_submit" name="new_supplier_submit" class="btn btn-success">Save</button>
                             </div>
                         </div>
 
