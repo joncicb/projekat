@@ -20,7 +20,33 @@ class IndexController extends Zend_Controller_Action
 				'order_number' => 'ASC'
 			)
 		));
+                $cmsSitemapPagesDbTable = new Application_Model_DbTable_CmsSitemapPages();
 		
+                $newsSitemapPages = $cmsSitemapPagesDbTable->search(array(
+                    'filters' => array(
+                    'status' => Application_Model_DbTable_CmsSitemapPages::STATUS_ENABLED,
+                    'type' => 'NewsPage'
+                                ),
+                    'limit' => 1
+                        ));
+
+                $newsSitemapPage = !empty($newsSitemapPages) ? $newsSitemapPages[0] : null;
+
+                $cmsNewsDbTable = new Application_Model_DbTable_CmsNews();
+                $news = $cmsNewsDbTable->search(array(
+                    'filters' => array(
+                        'status'=>  Application_Model_DbTable_CmsNews::STATUS_ENABLED,
+
+                    ),
+                    'orders' => array(//sortiram tabelu po
+                        'order_number'=>'ASC'
+                    ),
+                    'limit' => 6,
+                    //'page' => 2
+                ));
+		
+                $this->view->news = $news;
+                $this->view->newsSitemapPage = $newsSitemapPage;
 		$this->view->indexSlides = $indexSlides;
     }
 }
