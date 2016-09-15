@@ -667,7 +667,7 @@ section.news figure.newsItem figcaption button:last-of-type:hover{
 
 /* Portfolio Section */
 .portfolio{
-    padding: 53px 0 60px 0;
+    padding: 0px 0 60px 0;
 
 }
 .portfolio figure img{
@@ -1593,12 +1593,17 @@ main.registration div.tab-content form#registratinFormFirm select.form-control +
 
 
 .date{
-    background-color:  #999;
-    color:white;
+    background: transparent;
+    color: #005db4;
+    border: 1px solid #bfddf4;
     margin-top: 10px;
-    cursor:  default;
+    cursor: default;
 }
 .date:hover{
+    color:#005db4;
+
+}
+/*.date:hover{
     background-color: white;
     color:#999;
     border: 1px solid #999;
@@ -1612,7 +1617,7 @@ main.registration div.tab-content form#registratinFormFirm select.form-control +
 .article:hover{
     background-color:  #e9e612;
     color:#000;
-}
+}*/
 
 .back-link{
     background: transparent;
@@ -1625,4 +1630,33 @@ main.registration div.tab-content form#registratinFormFirm select.form-control +
 .back-link:hover{
     background-color:  #e9e612;
     color:#000;
+}
+
+.project-photos{
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.newsItem img {
+    margin-bottom: 20px;
+}
+#content a{
+    margin-bottom: 50px;
+}
+
+.portfolio img:hover{
+    transform: scale(1.05);
+    transition: 1s;
+}
+
+
+.section80_20{
+    border: 1px solid gray;
+    padding: 15px;
+    border-radius: 5px;
+    height: 400px;
+}
+.border{
+    padding-left: 0px;
+    padding-right: 30px;
+    padding-bottom: 30px;
 }

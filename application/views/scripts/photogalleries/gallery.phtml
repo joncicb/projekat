@@ -24,6 +24,9 @@ $this->headMeta()->appendName('description', $this->photoGallery['description'])
         
         <div id="content">
             <a href="<?php echo $this->sitemapPageUrl($sitemapPage['id']); ?>" class="btn btn-xs btn-default back-link"><i class="fa fa-arrow-left"></i> Back to all photo galleries</a>
+            <h3 class="block-title">
+                               <p><span><?php echo $this->escape($photoGallery['title']); ?></span></p>
+                            </h3>
             <div class="container portfolio">
                 <!--Portfolio feature item-->
                 <div class="row">
@@ -33,9 +36,7 @@ $this->headMeta()->appendName('description', $this->photoGallery['description'])
                             <div class="col-md-5 sidebar sidebar-right">
                         <!-- quick details -->
                         <div class="block">
-                            <h3 class="block-title">
-                                <span><?php echo $this->escape($photoGallery['title']); ?></span>
-                            </h3>
+                            
                             <div class="block">
                                 <p><?php echo $this->escape($photoGallery['description']); ?></p>
                             </div>

@@ -11,4 +11,5 @@ class Zend_View_Helper_NewsUrl extends Zend_View_Helper_Abstract
         ), 'news-route', true);
         
     }
+    
 }

@@ -7,7 +7,12 @@ class NewsController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
+        $flashMessenger = $this->getHelper('FlashMessenger');
 
+        $systemMessages = array(
+            'success' => $flashMessenger->getMessages('success'),
+            'errors' => $flashMessenger->getMessages('errors')
+        );
         $request = $this->getRequest();
 
         $sitemapPageId = (int) $request->getParam('sitemap_page_id');
@@ -49,11 +54,8 @@ class NewsController extends Zend_Controller_Action {
         $this->view->breadcrumb = $sitemapPageBreadcrumbs;
         $this->view->sitemapPage = $sitemapPage;
         $this->view->news = $news;
+        $this->view->systemMessages = $systemMessages;
 
-    }
-
-    public function newAction() {
-        /* Initialize action controller here */
     }
 
 }

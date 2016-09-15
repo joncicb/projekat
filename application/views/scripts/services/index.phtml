@@ -28,16 +28,16 @@ $this->headTitle($sitemapPage['title']);
                     <figure class="newsItem">
                         <div class="imgNews">
                             <img class="img-responsive" src="<?php echo $this->serviceImgUrl($service); ?>" alt="">
-                            <div style="display: none;" class="hoverNews text-center">
+<!--                            <div style="display: none;" class="hoverNews text-center">
                                 <a href="#"><span class="fa fa-facebook" aria-hidden="true"></span></a>
                                 <a href="#"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
                                 <a href="#"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-                            </div>
+                            </div>-->
                         </div>
                         <a href="#"><?php echo $this->escape($service['title']); ?></a>
                         <br>
-                        <span><?php echo $this->escape($service['description']); ?>
-                        </span>
+                        <p><span><?php echo $this->escape($service['description']); ?>
+                        </span></p>
                     </figure>
                 </div>
                 <?php }

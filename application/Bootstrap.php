@@ -74,6 +74,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		
 		$sitmapPagesMap = Application_Model_DbTable_CmsSitemapPages::getSitemapPagesMap();
 		
+                 
+                
 		foreach ($sitmapPagesMap as $sitemapPageId => $sitemapPageMap) {
 			
 			if ($sitemapPageMap['type'] == 'StaticPage') {
@@ -178,7 +180,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                 $router->addRoute('news-item-route', new Zend_Controller_Router_Route(
                                         $sitemapPageMap['url'] . '/:id/:news_item_slug',
                                         array(
-                                                'controller' => 'catalog',
+                                                'controller' => 'news',
                                                 'action' => 'newsItem',
                                                 'sitemap_page_id'=>$sitemapPageId
                                             )
