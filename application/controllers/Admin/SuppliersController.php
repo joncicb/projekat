@@ -79,7 +79,7 @@ class Admin_SuppliersController extends Zend_Controller_Action {
                       //open uploaded photo in temporary directory
                      $supplierPhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
                      //dimenzionise sliku
-                     $supplierPhoto->fit(170, 70);
+                     $supplierPhoto->fit(270, 190);
                      
                      $supplierPhoto->save(PUBLIC_PATH . '/uploads/suppliers/' . $supplierId . '.jpg');
                      
@@ -169,7 +169,7 @@ class Admin_SuppliersController extends Zend_Controller_Action {
                         // Open uploaded photo in temporary directory
                         $supplierPhoto = Intervention\Image\ImageManagerStatic::make($fileInfo['tmp_name']);
                         
-                        $supplierPhoto->fit(170, 70);
+                        $supplierPhoto->fit(270, 190);
                         
                         $supplierPhoto->save(PUBLIC_PATH . '/uploads/suppliers/' . $supplier['id'] . '.jpg');
                        

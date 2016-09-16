@@ -304,18 +304,18 @@ article.container-fluid{
 .cars{
     border-bottom: 1px solid #ccc;
     border-top: 1px solid #ccc;
-    padding: 35px 0;
+    padding: 15px 0;
 }
 
 .cars div.item{
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     padding: 20px;
 }
 
-.cars div.item:hover{
+/*.cars div.item:hover{
     background-color: yellow;
-}
+}*/
 
 
 .owl-controls {
@@ -525,7 +525,7 @@ figure.newsItem p:before{
 }
 
 figure.newsItem p{
-    margin-top: 50px;
+    margin-top: 0px;
 }
 .controlsNews span{
     position: relative;
@@ -1516,7 +1516,7 @@ main.logIn div.form-group span{
 .registration ul{
     margin: 0 auto;
 }
-main.registration div.container > div{
+main.registration div.header_top_in > div{
     border-bottom: 1px solid #ccc;
 }
 main.registration .nav a{ 
@@ -1593,17 +1593,18 @@ main.registration div.tab-content form#registratinFormFirm select.form-control +
 
 
 .date{
-    background: transparent;
-    color: #005db4;
+    background: #999;
+    color: white;
     border: 1px solid #bfddf4;
     margin-top: 10px;
     cursor: default;
 }
-.date:hover{
+/*.date:hover{
     color:#005db4;
 
-}
-/*.date:hover{
+}*/
+
+.date:hover{
     background-color: white;
     color:#999;
     border: 1px solid #999;
@@ -1617,7 +1618,7 @@ main.registration div.tab-content form#registratinFormFirm select.form-control +
 .article:hover{
     background-color:  #e9e612;
     color:#000;
-}*/
+}
 
 .back-link{
     background: transparent;

@@ -141,11 +141,12 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
       echo $form->getElement('quantity')->setAttribs(array(
           'class' => 'form-control input-md',
           'placeholder'=>'enter product\'s quantity',
-          'id'=>'quantity'
+          'id'=>'quantity',
+          'required'=>'required'
       ));
       ?>
       
-  <span class="help-block">0</span>  
+  <span class="help-block">0.00</span>  
   </div>
   <div class="col-md-4">
       <?php if ($form->getElement('quantity')->hasErrors()) {?>
@@ -159,7 +160,7 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
 </div>
 
 
-<div class="form-group">
+<!--<div class="form-group">
     <label class="col-md-4 control-label" for="product_photo">Photo</label>
     <div class="col-md-4">                     
         <input type="file" name="product_photo" id="product_photo" class="form-control input-md">
@@ -173,7 +174,7 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
             </div>
         <?php } ?>  
     </div>
-</div>
+</div>-->
 
 <!-- Button (Double) -->
 <div class="form-group text-right">

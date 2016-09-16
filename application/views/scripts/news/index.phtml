@@ -1,7 +1,7 @@
 <?php
 $sitemapPage = $this->sitemapPage;
 $news = $this->news;
-$newsItem = $this->newsItem;
+$item = $this->item;
 $this->headTitle($sitemapPage['title']);
 //$this->headMeta()->appendName('description', $sitemapPage['description']);
 ?>
@@ -20,24 +20,24 @@ $this->headTitle($sitemapPage['title']);
             <section class="news newsPage">
                 <div class="container">
                     <div class="row">
-                     <?php foreach ($news as $oneNews) {
+                     <?php foreach ($news as $item) {
                     ?>
 
                         <div class="col-sm-6 col-md-4">
                             <figure class="newsItem">
                                 <div class="imgNews">
-                                    <img class="img-responsive" src="<?php echo $this->newsImgUrl($oneNews); ?>" alt=""/>
-                                    <div class="hoverNews text-center">
+                                    <img class="img-responsive" src="<?php echo $this->newsImgUrl($item); ?>" alt=""/>
+<!--                                    <div class="hoverNews text-center">
                                         <a href="#"><span class="fa fa-facebook" aria-hidden="true"></span></a>
                                         <a href="#"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
                                         <a href="#"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-                                    </div>
+                                    </div>-->
                                 </div>
 
-                                    <button type="button" class="btn items date"><?php echo $this->escape($oneNews['date']); ?></button>
-                                    <button type="button" class="btn items date"><?php echo $this->escape($oneNews['title']); ?></button>
+                                    <button type="button" class="btn items date"><?php echo $this->escape($item['date']); ?></button>
+                                    <a href="<?php echo $this->itemUrl($item);?>" target="_blank"><button type="button" class="btn items article">Read More</button></a>
                                     <br>
-                                   <p><span><?php echo $this->escape($oneNews['description']); ?>
+                                   <p><span><?php echo $this->escape($item['description']); ?>
                                     </span></p>
 
                                 

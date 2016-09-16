@@ -17,7 +17,7 @@
         <!-- Theme  CSS -->
 
         <?php echo $this->headStyle(); ?>
-<a href=>
+
         <link rel="apple-touch-icon" href="<?php echo $this->baseUrl('/apple-touch-icon.png'); ?>">
         <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyD5UMz1q-VLI2igjQT7a8_ADtDuRBxMMRQ'></script>
@@ -35,7 +35,24 @@
     <!-- ======== @Region: body ======== -->
     <body>
         <header>
-           
+           <section>
+		<div class="container">
+		    <div class="a header_top_in">
+			
+			<ul class="list-unstyled list-inline">
+			    <li>
+				<p><img src="img/phone_icon.png" alt=""/> 011 783 99 99</p>
+			    </li>
+			    <li>
+				<p><img src="img/location_icon.png" alt=""/> Location: <span>Gospodara Vucica 33, 11000 Belgrade, Serbia</span></p>
+			    </li></ul>
+			
+			<ul class="list-unstyled list-inline">
+			    
+			</ul>
+		    </div>
+		</div>
+	    </section>
             <section  class="navigation">
                 <div class="container">
                     <article class="navigation-bar">
@@ -46,10 +63,11 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span> 
                                 </button>
-                                <a class="navbar-brand" href="#"><img src="/img/logo_icon.png" alt=""/>Auto Extra ltd.</a>
+                                <a class="navbar-brand" href="<?php echo $this->baseUrl('/');?>"><img src="<?php echo $this->baseUrl('/img/logo_icon.png"'); ?>" alt=""/>Auto Extra ltd.</a>
                             </div>
                             <div class="collapse navbar-collapse " id="myNavbar">                              
                                 <?php echo $this->topMenuHtml();?>
+                                
 <!--                                <ul class="nav navbar-nav navbar-right">
 
                                     <li><a href="#" id="shopingCart"><img src="/img/cart_icon.png" alt=""/> Inbox <span class="badge">42</span></a></li>
@@ -112,19 +130,19 @@
                                 <?php echo $this->topMenuHtml();?>
                             <ul class="nav navbar-nav navbar-right socialNetwork">
                                 <li>
-                                    <a href="#"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-                                    <a href="#"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
-                                    <a href="#"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+                                    <a href="https://www.facebook.com/cubesdoo"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+                                    <a href="https://www.linkedin.com/company/cubes-d-o-o-"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
+                                    <a href="https://www.twitter.com/cubesdoo"><span class="fa fa-twitter" aria-hidden="true"></span></a>
                                 </li>
                             </ul>
                         </div>
                     </nav>
                 </article>
             </div>
-            <section class="payments">
+            <section class="development">
                 <div class="container">
                     <div>
-                        <ul class="nav navbar-nav">
+<!--                        <ul class="nav navbar-nav">
                             <li>
                                 <a href="">
                                     <img src="/img/payPal.png" alt=""/>
@@ -136,17 +154,15 @@
                                     <img src="/img/visa_icon.png" alt=""/>
                                 </a>
                             </li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="">Auto Extra ltd © 2016 All Rights Reserved</a>
-                            </li>  
-                        </ul>
+                        </ul>-->
+                        <br>
+                                <p class="text-center">Auto Extra ltd © 2016 All Rights Reserved</p>
+                            
                     </div>
                 </div>
             </section>
             <section class="development ">
-                <p class="text-center">Ovaj projekat je realizovan u okviru <a href="school.cubes.rs">CUBES SCHOOL</a>. Projekat realizovali: FRONTEND <a href="#">Ivan Trickovic</a>, BACKEND </p>
+                <p class="text-center">Ovaj projekat je realizovan u okviru <a href="school.cubes.rs">CUBES SCHOOL</a>. Projekat realizovali: FRONTEND <b>Ivan Trickovic</b>, BACKEND <b>Bojan Joncic</b></p>
             </section>
         </footer>
 

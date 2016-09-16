@@ -4,7 +4,7 @@ class Application_Form_Admin_ProductAdd extends Zend_Form
     public function init() {
         
         $model = new Zend_Form_Element_Text('model');
-        $model->addFilter('model')
+        $model->addFilter('StringTrim')
                 ->addValidator('StringLength', false, array('min'=>3, 'max'=>20))
                  ->setRequired(true);
         $this->addElement($model);
@@ -35,19 +35,22 @@ class Application_Form_Admin_ProductAdd extends Zend_Form
                 //->setRequired(false);
         $this->addElement($quantity);
         
-        $stockStatus = new Zend_Form_Element_Button('stock_status');
-        $stockStatus->addFilter('StringTrim')
-                    ->addValidator(new Zend_Validate_InArray(array('stock_status' => 1,
-                                             'stock_status' => 0)))
-                    ->setRequired(false);
-        $this->addElement($quantity);
-        
-        $partStatus = new Zend_Form_Element_Button('part_status');
-        $partStatus->addFilter('StringTrim')
-                
-                //->addValidator('StringLength', false, array('min'=>3, 'max'=>10))
-                ->setRequired(false);
-        $this->addElement($partStatus);
+//        $productPhoto = new Zend_Form_Element_File('product_photo');
+//        $productPhoto->addValidator('Count', true, 1) 
+//                    ->addValidator('MimeType', true, array('image/jpeg', 'image/gif', 'image/png'))
+//                    ->addValidator('ImageSize', false, array(
+//                        'minwidth' => 150,
+//                        'minheight' => 150,
+//                        'maxwidth' => 2000,
+//                        'maxheight' => 2000
+//                    ))
+//                    ->addValidator('Size', false, array(
+//                        'max' => '10MB'
+//                    ))
+//                    ->setValueDisabled(true)
+//                    ->setRequired(false);
+//        
+//            $this->addElement($productPhoto);
   
         
     }

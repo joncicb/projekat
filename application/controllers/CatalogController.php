@@ -34,9 +34,19 @@ class CatalogController extends Zend_Controller_Action
         ) {
             throw new Zend_Controller_Router_Exception('Sitemap page is disabled', 404);
         }
+                $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
+        $products = $cmsProductsDbTable->search(array(
+//            'filters' => array(
+//            ),
+            'orders' => array(
+                'order_number' => 'ASC',
+            ),
+                //'limit' => 4,
+                //'page' => 2
+        ));
         $sitemapPageBreadcrumbs = $cmsSitemapPageDbTable->getSitemapPageBreadcrumbs($sitemapPageId);
 
-
+        $this->view->products =  $products;
         $this->view->sitemapPage = $sitemapPage;
         $this->view->breadcrumb = $sitemapPageBreadcrumbs;
     }

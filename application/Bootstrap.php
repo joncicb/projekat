@@ -44,7 +44,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                         'NewsPage'=>array(
                                 'title'=>'News Page',
                                 'subtypes'=>array(
-                                         'NewsPage' => 0
+                                         
                                 )
                         ),
                         'ServicesPage'=>array(
@@ -177,11 +177,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                                 'sitemap_page_id'=>$sitemapPageId
                                     )
                                 ));
-                                $router->addRoute('news-item-route', new Zend_Controller_Router_Route(
-                                        $sitemapPageMap['url'] . '/:id/:news_item_slug',
+                                $router->addRoute('item-route', new Zend_Controller_Router_Route(
+                                        $sitemapPageMap['url'] . '/:id/:item_slug',
                                         array(
                                                 'controller' => 'news',
-                                                'action' => 'newsItem',
+                                                'action' => 'item',
                                                 'sitemap_page_id'=>$sitemapPageId
                                             )
                                         ));

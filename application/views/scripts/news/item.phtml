@@ -1,13 +1,21 @@
- 
+ <?php
+$sitemapPage = $this->sitemapPage;
+$news = $this->news;
+$item = $this->item;
+$sitemapPageBreadcrumbs = $this->breadcrumb;
+$this->headTitle($sitemapPage['title']);
+//$this->headMeta()->appendName('description', $sitemapPage['description']);
+?>
 <section class="bredcrumbs">
 
     <div class="container">
         <article>
             <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Item</a></li>
-            </ol>
+                        <li><a href="<?php echo $this->baseUrl('/'); ?>">Home</a></li>
+                        <?php foreach ($this->breadcrumb as $breadcrumb) { ?>
+                            <li><a href=""><?php echo $breadcrumb['short_title']; ?></a></li>
+                        <?php } ?>
+                    </ol>
         </article>
     </div>
 
@@ -20,37 +28,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="text-uppercase">READY FOR TRACK DAY</h3>
+                    <h3 class="text-uppercase"><?php echo $this->escape($item['title']); ?></h3>
                 </div>
-                <div class="col-xs-12 col-md-6">
+                <div class="col-xs-6 col-md-4">
                     <figure>
-                        <img class="img-responsive" src="img/about_us1.jpg" alt=""/>
+                        <img class="img-responsive" src="<?php echo $this->newsImgUrl($item); ?>" alt=""/>
                     </figure>
                 </div>
-                <div class="col-xs-12 col-md-6">
-                    <p>Ea ullum liber aperiri mi, impetus ate philosophia ad duo, quem regione ne ius.
-                        Vis quis lobortis dissentias ex, in du aft philosophia, malis necessitatibus no mei.
-                        Volumus sensibus qui ex, eum duis doming ad. Lorem ipsum dolor sit amet, consectetuer
-                        adipiscing elit ligula eget dolor.</p>
-                    <p>enean massa. Cum sociis natoque penatibus et magnis
-                        dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-                        eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-                        aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                        justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus
-                        elementum semper nisi.</p>
-                    <p>Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
-                        consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+                <div class="col-xs-6 col-md-4">
+                    <p><?php echo $this->escape($item['description']); ?></p>
+                    
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-6">
-                    <p>25 september 2016 <span>by</span> <a href="#"> Jane Smith</a></p>
+                    <button type="button" class="btn items date">Aded:<?php echo $this->escape($item['date']); ?></button>
                 </div>
-                <div class="col-xs-6 text-right">
+<!--                <div class="col-xs-6 text-right">
                     <p>Tags: <a href="#"> Aenean  </a> <a href="#"> Vulputate</a> <a href="#"> Aenean</a></p>
-                </div>
+                </div>-->
             </div>
-            <div class="row addComment">
+<!--            <div class="row addComment">
                 <div class="col-md-3">
                     <h4 class="text-uppercase">Add Comment</h4>
 
@@ -139,11 +137,11 @@
                                                                 <a href="$">Hide</a>
                                                             </div>
                                                         </div>
-                                                        <!-- Nested media object -->
+                                                         Nested media object 
 
                                                     </div>
                                                 </div>
-                                                <!-- Nested media object -->
+                                                 Nested media object 
                                                 <div class="media">
                                                     <a class="pull-left" href="#">
                                                         <img class="media-object img-circle"   src="http://placehold.it/80x80" alt="" />
@@ -198,7 +196,7 @@
                     </div>
 
                 </div>
-            </div>
+            </div>-->
         </div>
     </section>
     <section class="getPrice">
@@ -207,7 +205,7 @@
                 <h2>You want to know what else can our team? Well, download and see</h2>
             </div>
             <div class="col-md-2">
-                <button class="btn btn-default" type="button">Get Price</button>
+                <a href="<?php echo $this->baseUrl('/CV-Cubes-Bojan-Joncic.pdf');?>" target="_blank"> <button class="btn btn-default" type="button">Get Price List</button></a>
             </div>
         </div>
     </section>
