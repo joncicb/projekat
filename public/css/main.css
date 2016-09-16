@@ -305,6 +305,7 @@ article.container-fluid{
     border-bottom: 1px solid #ccc;
     border-top: 1px solid #ccc;
     padding: 15px 0;
+    margin-bottom: 40px;
 }
 
 .cars div.item{
@@ -498,7 +499,7 @@ section.goods .items button:hover{
 
 /*   News Section  */ 
 .news{
-    padding-top: 70px;
+    padding-top: 0px;
 }
 .news h3{
     font-size: 24px;
@@ -667,7 +668,7 @@ section.news figure.newsItem figcaption button:last-of-type:hover{
 
 /* Portfolio Section */
 .portfolio{
-    padding: 0px 0 60px 0;
+    padding: 60px 0 60px 0;
 
 }
 .portfolio figure img{
@@ -724,7 +725,7 @@ section.news figure.newsItem figcaption button:last-of-type:hover{
 
 .pumpOptions article.part {
     max-width: 400px;
-    padding: 60px 10px;
+    padding: 0px 30px;
 }
 .pumpOptions article.part h3{
     margin-top: 20px;
