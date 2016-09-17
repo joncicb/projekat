@@ -4,6 +4,8 @@ $indexSlides=$this->indexSlides;
 $news = $this->news;
 $services = $this->services;
 $servicesSitemapPage = $this->servicesSitemapPage;
+$photoGalleries = $this->photoGalleries;
+$photoGalleriesPages = $this->photoGalleriesPages;
 $this->headTitle($sitemapPage['title']);
 //$this->headMeta()->appendName('description', $sitemapPage['description']);
 ?>
@@ -384,58 +386,25 @@ $this->headTitle($sitemapPage['title']);
 
     <section class="portfolio">
         <div class="container">
+            <h3 class="text-center">Check Out Our Products In Photo Galleries <br><?php if ($this->photoGalleriesPages) {?>
+		<small><a href="<?php echo $this->sitemapPageUrl($this->photoGalleriesPages['id']);?>">View all</a></small>
+                <?php }?></h3>
             <div class="row equal">
-                <div class="col-xs-12 col-md-5 col-lg-5">
+                <?php
+                foreach ($photoGalleries as $photoGallery) {
+                ?>
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    
                     <figure class="figure center-block">
-                        <img src="img/portfolioItem.jpg"   class="img-responsive double" alt="A generic square placeholder image with rounded corners in a figure.">
-<!--                        <figcaption class="figure-caption">
-                            <a href="#"><h4>New Tuning Packge for Range Rover Sport</h4></a>
-                            <a href="#"><p>24 comments</p></a>
-                        </figcaption>-->
+                        <img src="<?php echo $this->photoGalleryLeadingPhotoUrl($photoGallery); ?>"   class="img-responsive double" alt="">
+                        <a href="<?php echo $this->photoGalleryUrl($photoGallery); ?>"><figcaption class="figure-caption">
+                            <h4><?php echo $this->escape($photoGallery['title']); ?></h4>
+                        </figcaption></a>
+
                     </figure> 
                 </div>
-                <div class="col-xs-12 col-md-5 col-lg-5">
-                    <div class="row">
-                        <div class=" col-sm-12">
-                            <figure class="figure center-block">
-                                <img src="img/portfolioItem1.jpg"   class="img-responsive" alt="A generic square placeholder image with rounded corners in a figure.">
-<!--                                <figcaption class="figure-caption">
-                                    <a href="#"><h4>New Tuning Packge for Range Rover Sport</h4></a>
-                                    <a href="#"><p>24 comments</p></a>
-                                </figcaption>-->
-                            </figure> 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class=" col-sm-6">
-                            <figure class="figure center-block">
-                                <img src="img/porfolioItem2.jpg"   class="img-responsive" alt="A generic square placeholder image with rounded corners in a figure.">
-<!--                                <figcaption class="figure-caption">
-                                    <a href="#"><h4>New Tuning Packge for Range Rover Sport</h4></a>
-                                    <a href="#"><p>24 comments</p></a>
-                                </figcaption>-->
-                            </figure> 
-                        </div>
-                        <div class="col-sm-6">
-                            <figure class="figure center-block">
-                                <img src="img/porfolioItem2.jpg"    class="img-responsive" alt="A generic square placeholder image with rounded corners in a figure.">
-<!--                                <figcaption class="figure-caption">
-                                    <a href="#"><h4>New Tuning Packge for Range Rover Sport</h4></a>
-                                    <a href="#"><p>24 comments</p></a>
-                                </figcaption>-->
-                            </figure> 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-2 col-lg-2 cen">
-                    <figure class="figure center-block">
-                        <img src="img/porfolioItem3.jpg"    class="img-responsive double" alt="A generic square placeholder image with rounded corners in a figure.">
-<!--                        <figcaption class="figure-caption">
-                            <a href="#"><h4>New Tuning Packge for Range Rover Sport</h4></a>
-                            <a href="#"><p>24 comments</p></a>
-                        </figcaption>-->
-                    </figure> 
-                </div>  
+                <?php } ?>
+                 
             </div>
         </div>
     </section>  

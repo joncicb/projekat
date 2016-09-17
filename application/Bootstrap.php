@@ -72,9 +72,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		
 		$router instanceof Zend_Controller_Router_Rewrite;
 		
-		$sitmapPagesMap = Application_Model_DbTable_CmsSitemapPages::getSitemapPagesMap();
-		
-                 
+		$sitmapPagesMap = Application_Model_DbTable_CmsSitemapPages::getSitemapPagesMap(); 
                 
 		foreach ($sitmapPagesMap as $sitemapPageId => $sitemapPageMap) {
 			

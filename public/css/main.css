@@ -82,7 +82,7 @@ a.navbar-brand{
 }
 
 .navigation .navigation-bar ul:last-of-type{
-    background: #005db4;
+/*    background: #005db4;*/
     padding: 0 15px;
     border-radius: 0 4px 4px 0;
 }
