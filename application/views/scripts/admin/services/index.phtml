@@ -1,5 +1,6 @@
 <?php
 $this->headTitle('Services');
+
 ?>
 
 <div class="page-header">
@@ -53,10 +54,10 @@ $this->headTitle('Services');
                                     <td class="text-center"><?php echo $this->escape($service['title']); ?></td>
                                     <td class="text-center">
                                         <div class="btn-group btn-group" role="group" aria-label="...">
-                                            <a 
-                                                href="<?php echo $this->url(array('controller' => 'services', 'action' => 'index'), 'default', true); ?>" 
+<!--                                            <a 
+                                                href="<?php echo $this->sitemapPageUrl($sitemapPage['id']);?>" 
                                                 target="_blank"
-                                                type="button" class="btn btn-default" title="preview"><i class="glyphicon glyphicon-eye-open"></i></a>
+                                                type="button" class="btn btn-default" title="preview"><i class="glyphicon glyphicon-eye-open"></i></a>-->
                                             <a 
                                                 href="<?php echo $this->url(array('controller' => 'admin_services', 'action' => 'edit', 'id' => $service['id']), 'default', true); ?>" 
                                                 type="button" class="btn btn-default" title="edit"><i class="glyphicon glyphicon-pencil"></i></a>
@@ -78,10 +79,10 @@ $this->headTitle('Services');
                                     <td class="text-center"><?php echo $this->escape($service['title']); ?></td>
                                     <td class="text-center">
                                         <div class="btn-group btn-group" role="group" aria-label="...">
-                                            <a 
-                                                href="<?php echo $this->url(array('controller' => 'services', 'action' => 'index'), 'default', true); ?>" 
+<!--                                            <a 
+                                                href="<?php echo $this->sitemapPageUrl($sitemapPage['id']);?>" 
                                                 target="_blank"
-                                                type="button" class="btn btn-default" title="preview"><i class="glyphicon glyphicon-eye-open"></i></a>
+                                                type="button" class="btn btn-default" title="preview"><i class="glyphicon glyphicon-eye-open"></i></a>-->
                                             <a 
                                                 href="<?php echo $this->url(array('controller' => 'admin_services', 'action' => 'edit', 'id' => $service['id']), 'default', true); ?>"
                                                 type="button" class="btn btn-default" title="edit"><i class="glyphicon glyphicon-pencil"></i></a>

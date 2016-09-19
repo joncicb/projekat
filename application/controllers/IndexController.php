@@ -27,6 +27,17 @@ class IndexController extends Zend_Controller_Action
                 'order_number' => 'ASC'
             )
         ));
+        $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
+        $products = $cmsProductsDbTable->search(array(
+            'filters' => array(
+                'status' => Application_Model_DbTable_CmsProducts::STATUS_ENABLED
+            ),
+            'orders' => array(
+                'order_number' => 'ASC',
+            ),
+            'limit' => 12
+            //'page' => 2
+        ));
         $cmsSitemapPagesDbTable = new Application_Model_DbTable_CmsSitemapPages();
         $servicesSitemapPages = $cmsSitemapPagesDbTable->search(array(
             'filters' => array(
@@ -96,6 +107,8 @@ class IndexController extends Zend_Controller_Action
         $this->view->servicesSitemapPage = $servicesSitemapPage;
         $this->view->photoGalleries = $photoGalleries;
         $this->view->photoGalleriesPages = $photoGalleriesPages;
+        $this->view->products = $products;
+        
     }
 
 }

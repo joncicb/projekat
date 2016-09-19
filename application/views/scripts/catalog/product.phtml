@@ -1,12 +1,19 @@
- 
+ <?php
+$sitemapPage = $this->sitemapPage;
+$products = $this->products;
+$productItem = $this->productItem;
+$sitemapPageBreadcrumbs = $this->breadcrumb;
+$this->headTitle($sitemapPage['title']);
+//$this->headMeta()->appendName('description', $sitemapPage['description']);
+?>
 <section class="bredcrumbs">
     <div class="container">
         <article>
             <ol class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Catalog</a></li>
-                <li><a href="#">Category</a></li>
-                <li><a href="#">Spyder® - Custom Headlights</a></li>
+                <li><a href="<?php echo $this->baseUrl('/'); ?>">Home</a></li>
+                <?php foreach ($this->breadcrumb as $breadcrumb) { ?>
+                    <li><a href=""><?php echo $breadcrumb['short_title']; ?></a></li>
+                <?php } ?>
             </ol>
         </article>
     </div>
@@ -14,7 +21,7 @@
 <!--   BREDACRUMBS SECTION START       -->
 <!--   MAIN SECTION START       -->
 <main class="product">
-    <section class="search">
+<!--    <section class="search">
         <div class="container">
             <form method="POST">
                 <div class="input-group">
@@ -27,14 +34,14 @@
             </form>
             <p>For example: <span>Сute cars parts </span> or <span> Cute-cute parts</span></p>
         </div>
-    </section>
+    </section>-->
 
     <section class="productInfo">
         <div class="container">
             <div class="row gallery">
                 <div class="col-xs-12">
-                    <h3 class="text-uppercase">Spyder® - Custom Headlights</h3>
-                    <p>in <a href="#"> Headlights</a></p>
+                    <h3 class="text-uppercase"><?php echo $this->escape($products['type']); ?></h3>
+                    <p>in <a href="#"> <?php echo $this->escape($products['model']); ?></a></p>
 
                 </div>
                 <div class="col-md-7">

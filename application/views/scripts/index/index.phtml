@@ -6,6 +6,7 @@ $services = $this->services;
 $servicesSitemapPage = $this->servicesSitemapPage;
 $photoGalleries = $this->photoGalleries;
 $photoGalleriesPages = $this->photoGalleriesPages;
+$products = $this->products;
 $this->headTitle($sitemapPage['title']);
 //$this->headMeta()->appendName('description', $sitemapPage['description']);
 ?>
@@ -76,7 +77,7 @@ $this->headTitle($sitemapPage['title']);
 
 
     
-<!--    <section class="container goods">
+    <section class="container goods">
         <div class="row">
             <div class="col-md-12 buttons">
 
@@ -85,206 +86,46 @@ $this->headTitle($sitemapPage['title']);
                 <button type="button" class="btn items">New</button>
                 <button type="button" class="btn items">Action</button>
             </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <article class="items center-block">
+            <?php foreach ($products as $product) {
+                ?>
+                <div class="col-sm-6 col-md-4 col-lg-3">
 
-                    <figure>
-                        <a href="#"><img class="img-responsive" src="img/items2.jpg" alt=""/></a>
-                        <figcaption>
-                            <a href="#"> <h3>T-Rex®</h3></a>
-                            <p>Billet Grilles</p>
-                            <button type="button" class="btn">$54<sup>99</sup></button>
-                        </figcaption>
+                    <article class="items center-block">
 
-                    </figure>
-                </article>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <article class="items center-block">
+                        <figure>
+                            <a href="<?php echo $this->productItemUrl($product);?>"><img class="img-responsive" src="<?php echo $this->productImgUrl($product); ?>" alt=""/></a>
+                            <figcaption>
+                                <a href="<?php echo $this->productItemUrl($product);?>"> <h3><?php echo $this->escape($product['type']); ?></h3></a>
+                                <p><?php echo $this->escape($product['model']); ?></p>
+                                <button type="button" class="btn"><?php echo $this->escape($product['price']); ?></button>
+                            </figcaption>
 
-                    <figure>
-                        <a href="#">
-                            <img class="img-responsive" src="img/items1.jpg" alt=""/>
-                        </a>
-                        <figcaption>
-                            <a href="#"><h3>BedRug Bed Mat</h3></a>
-                            <p>Bed Accessories</p>
-                            <button type="button" class="btn">$54<sup>99</sup></button>
-                        </figcaption>
+                        </figure>
+                    </article>
 
-                    </figure>
-                </article>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <article class="items center-block">
-
-                    <figure>
-                        <a href="#"><img class="img-responsive" src="img/items3.png" alt=""/></a>
-                        <figcaption>
-                            <a href="#"> <h3>KW Suspensions®</h3></a>
-                            <p>Suspension Systems </p>
-                            <button type="button" class="btn">$54<sup>99</sup></button>
-                        </figcaption>
-
-                    </figure>
-                </article>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <article class="items center-block">
-
-                    <figure>
-                        <a href="#"><img class="img-responsive" src="img/items4.jpg" alt=""/></a>
-                        <figcaption>
-                            <a href="#"> <h3>T5i®</h3></a>
-                            <p>Spoilers & Wings</p>
-                            <button type="button" class="btn">$54<sup>99</sup></button>
-                        </figcaption>
-
-                    </figure>
-                </article>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <article class="items center-block">
-
-                    <figure>
-                        <a href="#"><img class="img-responsive" src="img/items2.jpg" alt=""/></a>
-                        <figcaption>
-                            <a href="#"> <h3>T-Rex®</h3></a>
-                            <p>Billet Grilles</p>
-                            <button type="button" class="btn">$54<sup>99</sup></button>
-                        </figcaption>
-
-                    </figure>
-                </article>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <article class="items center-block">
-
-                    <figure>
-                        <a href="#">
-                            <img class="img-responsive" src="img/items1.jpg" alt=""/>
-                        </a>
-                        <figcaption>
-                            <a href="#"><h3>BedRug Bed Mat</h3></a>
-                            <p>Bed Accessories</p>
-                            <button type="button" class="btn">$54<sup>99</sup></button>
-                        </figcaption>
-
-                    </figure>
-                </article>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <article class="items center-block">
-
-                    <figure>
-                        <a href="#"><img class="img-responsive" src="img/items3.png" alt=""/></a>
-                        <figcaption>
-                            <a href="#"> <h3>KW Suspensions®</h3></a>
-                            <p>Suspension Systems </p>
-                            <button type="button" class="btn">$54<sup>99</sup></button>
-                        </figcaption>
-
-                    </figure>
-                </article>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <article class="items center-block">
-
-                    <figure>
-                        <a href="#"><img class="img-responsive" src="img/items4.jpg" alt=""/></a>
-                        <figcaption>
-                            <a href="#"> <h3>T5i®</h3></a>
-                            <p>Spoilers & Wings</p>
-                            <button type="button" class="btn">$54<sup>99</sup></button>
-                        </figcaption>
-
-                    </figure>
-                </article>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <article class="items center-block">
-
-                    <figure>
-                        <a href="#"><img class="img-responsive" src="img/items2.jpg" alt=""/></a>
-                        <figcaption>
-                            <a href="#"> <h3>T-Rex®</h3></a>
-                            <p>Billet Grilles</p>
-                            <button type="button" class="btn">$54<sup>99</sup></button>
-                        </figcaption>
-
-                    </figure>
-                </article>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <article class="items center-block">
-
-                    <figure>
-                        <a href="#">
-                            <img class="img-responsive" src="img/items1.jpg" alt=""/>
-                        </a>
-                        <figcaption>
-                            <a href="#"><h3>BedRug Bed Mat</h3></a>
-                            <p>Bed Accessories</p>
-                            <button type="button" class="btn">$54<sup>99</sup></button>
-                        </figcaption>
-
-                    </figure>
-                </article>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <article class="items center-block">
-
-                    <figure>
-                        <a href="#"><img class="img-responsive" src="img/items3.png" alt=""/></a>
-                        <figcaption>
-                            <a href="#"> <h3>KW Suspensions®</h3></a>
-                            <p>Suspension Systems </p>
-                            <button type="button" class="btn">$54<sup>99</sup></button>
-                        </figcaption>
-
-                    </figure>
-                </article>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <article class="items center-block">
-
-                    <figure>
-                        <a href="#"><img class="img-responsive" src="img/items4.jpg" alt=""/></a>
-                        <figcaption>
-                            <a href="#"> <h3>T5i®</h3></a>
-                            <p>Spoilers & Wings</p>
-                            <button type="button" class="btn">$54<sup>99</sup></button>
-                        </figcaption>
-
-                    </figure>
-                </article>
-            </div>
-            <div class="col-xs-12 showMore">
+                </div>
+            <?php }
+            ?>
+            <div class="col-xs-12 showMore"></div>
+<!--            <div class="col-xs-12 showMore">
                 <a href="#"><span class="glyphicon glyphicon-chevron-down"></span>Show 12 more goods</a>
-            </div>
+            </div>-->
         </div>
 
-    </section>-->
+    </section>
     <section class="soldParts">
         <div class="transparentColor">
             <div class="container">
                 <div  class="row">
+                    <?php foreach ($products as $product) {
+                ?>
                     <article class="col-xs-6 col-md-3 text-center">
-                        <h3>2580</h3>
-                        <p>Interior</p>
+                        <h3><?php echo $this->escape($product['quantity']); ?></h3>
+                        <p><?php echo $this->escape($product['model'] . ' ' . $product['type']); ?></p>
+                       
                     </article>
-                    <article class="col-xs-6 col-md-3 text-center">
-                        <h3>1820</h3>
-                        <p>Exterior</p>
-                    </article>
-                    <article class="col-xs-6 col-md-3 text-center">
-                        <h3>4582</h3>
-                        <p>Wheels&tires</p>
-                    </article>
-                    <article class="col-xs-6 col-md-3 text-center">
-                        <h3>2524</h3>
-                        <p>Performance</p>
-                    </article>
+                    <?php }
+            ?>
                 </div>
             </div>
         </div>
@@ -430,7 +271,7 @@ $this->headTitle($sitemapPage['title']);
 
             <div class="formContact">
                 <div class="adress">
-                    <h2>Contact Us</h2>
+                    <h2>Contact Us </h2>
                     <h3>011 783 99 99</h3>
                     <p>Gospodara Vucica 33, 11000 Belgrade, Serbia</p>
                 </div>

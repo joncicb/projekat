@@ -161,7 +161,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                                         $sitemapPageMap['url'] . '/:id/:product_item_slug',
                                         array(
                                                 'controller' => 'catalog',
-                                                'action' => 'products',
+                                                'action' => 'product',
                                                 'sitemap_page_id'=>$sitemapPageId
                                             )
                                         ));

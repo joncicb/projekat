@@ -4,6 +4,9 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
 
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 0;
+    
+    const STATUS_ONACTION = 1;
+    const STATUS_NOTONACTION = 0;
 
     protected $_name = 'cms_products';
 
@@ -80,7 +83,7 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
      */
     public function deleteProduct($id){
         
-        $productPhotoFilePath = PUBLIC_PATH . '/img/' . $id . '.jpg';
+        $productPhotoFilePath = PUBLIC_PATH . '/uploads/products' . $id . '.jpg';
         //preneti u products!!!!
         if(is_file($productPhotoFilePath)){
             //delete product photo file
@@ -177,13 +180,15 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
                     switch($field){
                     case 'id':    
                     case 'stock_status':
+                    case 'action':
                     case 'model':
                     case 'type':
                     case 'description':
                     case 'order_number':
                     case 'price':
                     case 'quantity':
-                    case 'part_status':
+                    case 'discount':
+                    case 'date':
                         
                         if($orderDirection === 'DESC'){
                             $select->order($field . ' DESC');
@@ -240,13 +245,15 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
                    switch ($field){
                     case 'id':    
                     case 'stock_status':
+                    case 'action':
                     case 'model':
                     case 'type':
                     case 'description':
                     case 'order_number':
                     case 'price':
                     case 'quantity':
-                    case 'part_status':
+                    case 'discount':
+                    case 'date':
                         
                         if(is_array($value)){
                             $select->where($field . ' IN (?)', $value);
@@ -263,9 +270,12 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
                     case 'description_search':
                         $select->where('description LIKE ?', '%' . $value . '%' );
                          break;
-                    case 'part_status_search':
-                        $select->where('part_status LIKE ?', '%' . $value . '%' );
+                    case 'discount_search':
+                        $select->where('discount LIKE ?', '%' . $value . '%' );
                          break;
+                    case 'date_search':
+                        $select->where('date LIKE ?', '%' . $value . '%' );
+                         break; 
                     case 'id_exclude':
                         if(is_array($value)){
                             $select->where('id NOT IN (?)', $value);

@@ -31,9 +31,10 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
                     <fieldset>
 
                         <!-- Form Name -->
-                        <legend>Edit Product - <?php echo $this->escape($this->product['first_name'] . ' ' . $this->product['last_name']); ?></legend>
+                        <legend>Edit Product - <?php echo $this->escape($this->product['model'] . ' ' . $this->product['type']); ?></legend>
 
                         <!-- Text input-->
+<!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="model">Model</label>  
   <div class="col-md-4">
@@ -45,7 +46,7 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
           'required'=>'required'
       ));
       ?>
-  <span class="help-block">min 3 max 20 characters</span>  
+  <span class="help-block">min 3 max 10 characters</span>  
   </div>
   <div class="col-md-4">
       <?php if ($form->getElement('model')->hasErrors()) { ?>
@@ -71,38 +72,12 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
       ));
       ?>
   
-  <span class="help-block">min 3 max 20 characters</span>  
+  <span class="help-block">min 3 max 10 characters</span>  
   </div>
   <div class="col-md-4">
       <?php if ($form->getElement('type')->hasErrors()) {?>
       <div class="has-error">
               <?php foreach ($form->getElement('type')->getMessages() as $message) { ?>
-                  <p class="help-block"><?php echo $this->escape($message); ?></p>
-              <?php } ?>
-          </div>
-      <?php } ?>
-  </div>
-</div>
-
-<!-- Text Area input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="description">Description</label>  
-  <div class="col-md-4">
-      <?php
-      echo $form->getElement('description')->setAttribs(array(
-          'class' => 'form-control input-md',
-          'placeholder'=>'enter product\'s description',
-          'id'=>'description',
-          'rows'=> 5
-      ));
-      ?>
-  
-  <span class="help-block">min 3 max 255 characters</span>  
-  </div>
-  <div class="col-md-4">
-      <?php if ($form->getElement('description')->hasErrors()) { ?>
-          <div class="has-error">
-              <?php foreach ($form->getElement('description')->getMessages() as $message) { ?>
                   <p class="help-block"><?php echo $this->escape($message); ?></p>
               <?php } ?>
           </div>
@@ -138,17 +113,45 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
 
 <!-- Text input-->
 <div class="form-group">
+  <label class="col-md-4 control-label" for="discount">Discount</label>  
+  <div class="col-md-4">
+      <?php
+      echo $form->getElement('discount')->setAttribs(array(
+          'class' => 'form-control input-md',
+          'placeholder'=>'enter discount for product',
+          'id'=>'discount',
+          //'required'=>'required'
+      ));
+      ?>
+  
+  <span class="help-block">10%</span>  
+  </div>
+  <div class="col-md-4">
+      <?php if ($form->getElement('discount')->hasErrors()) {?>
+      <div class="has-error">
+              <?php foreach ($form->getElement('discount')->getMessages() as $message) { ?>
+                  <p class="help-block"><?php echo $this->escape($message); ?></p>
+              <?php } ?>
+          </div>
+      <?php } ?>
+  </div>
+</div>
+
+
+<!-- Text input-->
+<div class="form-group">
   <label class="col-md-4 control-label" for="quantity">Quantity</label>  
   <div class="col-md-4">
       <?php
       echo $form->getElement('quantity')->setAttribs(array(
           'class' => 'form-control input-md',
           'placeholder'=>'enter product\'s quantity',
-          'id'=>'quantity'
+          'id'=>'quantity',
+          'required'=>'required'
       ));
       ?>
       
-  <span class="help-block">0</span>  
+  <span class="help-block">0.00</span>  
   </div>
   <div class="col-md-4">
       <?php if ($form->getElement('quantity')->hasErrors()) {?>
@@ -161,22 +164,48 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
   </div>
 </div>
 
-
+<!-- Text Area input-->
 <div class="form-group">
-    <label class="col-md-4 control-label" for="product_photo">Photo</label>
-    <div class="col-md-4">                     
-        <input type="file" name="product_photo" id="product_photo" class="form-control input-md">
-    </div>
-    <div class="col-md-4">
-        <?php if ($form->getElement('product_photo')->hasErrors()) { ?>
-            <div class="has-error">
-                <?php foreach ($form->getElement('product_photo')->getMessages() as $message) { ?>
-                    <p class="help-block"><?php echo $this->escape($message); ?></p>
-                <?php } ?>
-            </div>
-        <?php } ?>  
-    </div>
+  <label class="col-md-4 control-label" for="description">Description</label>  
+  <div class="col-md-4">
+      <?php
+      echo $form->getElement('description')->setAttribs(array(
+          'class' => 'form-control input-md',
+          'placeholder'=>'enter product\'s description',
+          'id'=>'description',
+          'rows'=> 5
+      ));
+      ?>
+  
+  <span class="help-block">min 3 max 255 characters</span>  
+  </div>
+  <div class="col-md-4">
+      <?php if ($form->getElement('description')->hasErrors()) { ?>
+          <div class="has-error">
+              <?php foreach ($form->getElement('description')->getMessages() as $message) { ?>
+                  <p class="help-block"><?php echo $this->escape($message); ?></p>
+              <?php } ?>
+          </div>
+      <?php } ?>
+  </div>
 </div>
+<!-- Photo -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="product_photo">Photo</label>
+                            <div class="col-md-4">    
+
+                                <div>
+                                    <a href="#" class="thumbnail">
+                                        <img src="<?php echo $this->productImgUrl($this->product); ?>">
+                                    </a>
+                                    <span class="help-block">Change Photo</span>   
+                                </div>
+
+                                <input type="file" name="product_photo" id="product_photo" class="btn btn-default btn-file">
+
+                            </div>
+
+                        </div>
 
 <!-- Button (Double) -->
 <div class="form-group text-right">
