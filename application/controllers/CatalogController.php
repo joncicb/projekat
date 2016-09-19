@@ -92,6 +92,7 @@ class CatalogController extends Zend_Controller_Action
                 //'page' => 2
         ));
         $sitemapPageBreadcrumbs = $cmsSitemapPageDbTable->getSitemapPageBreadcrumbs($sitemapPageId);
+        
         $this->view->breadcrumb = $sitemapPageBreadcrumbs;
         $this->view->sitemapPage = $sitemapPage;
         $this->view->productItem = $productItem;

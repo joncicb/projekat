@@ -10,9 +10,9 @@ $this->headTitle($sitemapPage['title']);
     <div class="container">
         <article>
             <ol class="breadcrumb">
-                <li><a href="<?php echo $this->baseUrl('/'); ?>">Home</a></li>
-                <?php foreach ($this->breadcrumb as $breadcrumb) { ?>
-                    <li><a href=""><?php echo $breadcrumb['short_title']; ?></a></li>
+                <li><a href="<?php echo $this->baseUrl('/'); ?>">Home</a></li> 
+                <?php foreach ($sitemapPageBreadcrumbs as $breadcrumb) { ?>
+                    <li><a href=""><?php echo $productItem['type']; ?></a></li>
                 <?php } ?>
             </ol>
         </article>
