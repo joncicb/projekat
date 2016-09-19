@@ -1,6 +1,6 @@
 <?php
 $sitemapPage = $this->sitemapPage;
-$indexSlides=$this->indexSlides;
+$indexSlides = $this->indexSlides;
 $news = $this->news;
 $services = $this->services;
 $servicesSitemapPage = $this->servicesSitemapPage;
@@ -23,29 +23,31 @@ $this->headTitle($sitemapPage['title']);
         </ol>
 
         <!-- Wrapper for slides -->
-<div class="carousel-inner" role="listbox">
-            <?php $carouselInner=0; foreach ($this->indexSlides as $indexSlide) { ?>
-            <div class="item <?php echo $carouselInner == 0 ? "active" : "" ; $carouselInner++;?>">
-                <img class="img-responsive" src="<?php echo $this->indexSlideImgUrl($indexSlide);?>" alt="" />
-                    
-                <div class="carousel-caption">
-                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-                    <h2><?php echo $this->escape($indexSlide['title']);?></h2>
-                </div>
-                <div class="carousel-caption-right">
-                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-                </div>
-            </div>
-<?php }?>
-        <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <div class="carousel-inner" role="listbox">
+            <?php $carouselInner = 0;
+            foreach ($this->indexSlides as $indexSlide) { ?>
+                <div class="item <?php echo $carouselInner == 0 ? "active" : "";
+                $carouselInner++; ?>">
+                    <img class="img-responsive" src="<?php echo $this->indexSlideImgUrl($indexSlide); ?>" alt="" />
 
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
+                    <div class="carousel-caption">
+                        <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                        <h2><?php echo $this->escape($indexSlide['title']); ?></h2>
+                    </div>
+                    <div class="carousel-caption-right">
+                        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                    </div>
+                </div>
+<?php } ?>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
 
 </article>
 <main>
@@ -66,36 +68,39 @@ $this->headTitle($sitemapPage['title']);
 
     <section class="container cars">
         <div class="owl-carousel">
-            <?php foreach ($this->suppliers as $supplier) { ?>
+<?php foreach ($this->suppliers as $supplier) { ?>
                 <div class="item">
                     <img src="<?php echo $this->supplierImgUrl($supplier); ?>" alt=""/>
                 </div>
 
-            <?php } ?>
+<?php } ?>
         </div>
     </section>
 
 
-    
+
     <section class="container goods">
         <div class="row">
-            <div class="col-md-12 buttons">
 
-                <button type="button" class="btn btn-primary down-arrow">Popular</button>
-                <button type="button" class="btn items sale">Sale 50%</button>
-                <button type="button" class="btn items">New</button>
-                <button type="button" class="btn items">Action</button>
-            </div>
-            <?php foreach ($products as $product) {
-                ?>
-                <div class="col-sm-6 col-md-4 col-lg-3">
+            <!--            <div class="col-md-12 buttons">
+                            
+                            `<?php foreach ($products as $product) {
+    ?>
+                                <button type="button" class="btn btn-primary down-arrow"><?php echo $this->escape($product['type']); ?></button>
+<?php }
+?>  
+                        </div>-->
 
-                    <article class="items center-block">
+<?php foreach ($products as $product) {
+    ?>
+                <div class="col-sm-6 col-md-4 col-lg-3 <?php echo $this->escape($product['model']); ?>" >
+
+                    <article class="items center-block" >
 
                         <figure>
-                            <a href="<?php echo $this->productItemUrl($product);?>"><img class="img-responsive" src="<?php echo $this->productImgUrl($product); ?>" alt=""/></a>
+                            <a href="<?php echo $this->productItemUrl($product); ?>"><img class="img-responsive" src="<?php echo $this->productImgUrl($product); ?>" alt=""/></a>
                             <figcaption>
-                                <a href="<?php echo $this->productItemUrl($product);?>"> <h3><?php echo $this->escape($product['type']); ?></h3></a>
+                                <a href="<?php echo $this->productItemUrl($product); ?>"> <h3><?php echo $this->escape($product['type']); ?></h3></a>
                                 <p><?php echo $this->escape($product['model']); ?></p>
                                 <button type="button" class="btn"><?php echo $this->escape($product['price']); ?></button>
                             </figcaption>
@@ -104,12 +109,12 @@ $this->headTitle($sitemapPage['title']);
                     </article>
 
                 </div>
-            <?php }
-            ?>
+<?php }
+?>
             <div class="col-xs-12 showMore"></div>
-<!--            <div class="col-xs-12 showMore">
-                <a href="#"><span class="glyphicon glyphicon-chevron-down"></span>Show 12 more goods</a>
-            </div>-->
+            <!--            <div class="col-xs-12 showMore">
+                            <a href="#"><span class="glyphicon glyphicon-chevron-down"></span>Show 12 more goods</a>
+                        </div>-->
         </div>
 
     </section>
@@ -117,54 +122,54 @@ $this->headTitle($sitemapPage['title']);
         <div class="transparentColor">
             <div class="container">
                 <div  class="row">
-                    <?php foreach ($products as $product) {
-                ?>
-                    <article class="col-xs-6 col-md-3 text-center">
-                        <h3><?php echo $this->escape($product['quantity']); ?></h3>
-                        <p><?php echo $this->escape($product['model'] . ' ' . $product['type']); ?></p>
-                       
-                    </article>
-                    <?php }
-            ?>
+<?php foreach ($products as $product) {
+    ?>
+                        <article class="col-xs-6 col-md-3 text-center">
+                            <h3><?php echo $this->escape($product['quantity']); ?></h3>
+                            <p><?php echo $this->escape($product['model'] . ' ' . $product['type']); ?></p>
+
+                        </article>
+<?php }
+?>
                 </div>
             </div>
         </div>
     </section>
     <section class="news">
         <div class="container">
-            <h3 class="text-center">NEWS <br><?php if ($this->newsSitemapPage) {?>
-		<small><a href="<?php echo $this->sitemapPageUrl($this->newsSitemapPage['id']);?>">View all</a></small>
-                <?php }?></h3>
-            
+            <h3 class="text-center">NEWS <br><?php if ($this->newsSitemapPage) { ?>
+                    <small><a href="<?php echo $this->sitemapPageUrl($this->newsSitemapPage['id']); ?>">View all</a></small>
+<?php } ?></h3>
+
             <div class="row">
                 <div class="col-xs-10">
                     <div class="slider"><!-- The slider -->
                         <div><!-- A mandatory div used by the slider -->
                             <!-- Each div below is considered a slide -->
-                            <?php foreach ($news as $oneNews) {
-                    ?>
-                            <div>
-                                <figure class="newsItem">
-                                    <div class="imgNews">
-                                        <img class="img-responsive" src="<?php echo $this->newsImgUrl($oneNews); ?>" alt=""/>
-<!--                                        <div class="hoverNews text-center">
-                                            <a href="#"><span class="fa fa-facebook" aria-hidden="true"></span></a>
-                                            <a href="#"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
-                                            <a href="#"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-                                        </div>-->
-                                    </div>
+<?php foreach ($news as $oneNews) {
+    ?>
+                                <div>
+                                    <figure class="newsItem">
+                                        <div class="imgNews">
+                                            <img class="img-responsive" src="<?php echo $this->newsImgUrl($oneNews); ?>" alt=""/>
+                                            <!--                                        <div class="hoverNews text-center">
+                                                                                        <a href="#"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+                                                                                        <a href="#"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
+                                                                                        <a href="#"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+                                                                                    </div>-->
+                                        </div>
 
-                                    <figcaption>
-                                        <h4><?php echo $this->escape($oneNews['title']); ?></h4>
-<!--                                        <button type="button" class="btn items date"><?php echo $this->escape($oneNews['date']); ?></button>-->
-                                        <a href="<?php echo $this->itemUrl($oneNews);?>" target="_blank"><button type="button" class="btn items article">Read More</button></a>
-                                        <p><?php echo $this->escape($oneNews['description']); ?></p>
+                                        <figcaption>
+                                            <h4><?php echo $this->escape($oneNews['title']); ?></h4>
+    <!--                                        <button type="button" class="btn items date"><?php echo $this->escape($oneNews['date']); ?></button>-->
+                                            <a href="<?php echo $this->itemUrl($oneNews); ?>" target="_blank"><button type="button" class="btn items article">Read More</button></a>
+                                            <p><?php echo $this->escape($oneNews['description']); ?></p>
 
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <?php }
-                        ?>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+<?php }
+?>
                         </div>
 
                     </div>
@@ -193,59 +198,59 @@ $this->headTitle($sitemapPage['title']);
                     </article>
                 </div>
             </div>
-            <div class="pumpRide text-center"><?php if ($this->servicesSitemapPage) {?><a href="<?php echo $this->sitemapPageUrl($this->servicesSitemapPage['id']);?>"><h3>Pump your ride with our services  <span class="fa fa-arrow-right"></span></h3></a><?php }?></div>
-		
-                
+            <div class="pumpRide text-center"><?php if ($this->servicesSitemapPage) { ?><a href="<?php echo $this->sitemapPageUrl($this->servicesSitemapPage['id']); ?>"><h3>Pump your ride with our services  <span class="fa fa-arrow-right"></span></h3></a><?php } ?></div>
+
+
         </div>
     </section>
     <section class="pumpOptions">
-        
-        <div class="container">
-           <?php foreach ($services as $service) {
-                    ?> 
-            <div class="row">
-                
-                <div class="col-sm-6 col-md-3">
-                    <article class="part center-block">
 
-                        <figure>
-                            <h3 class="title">
-                            
-                        </h3>
-                            <figcaption class="text-center">
-                                <h3><i class="<?php echo $this->escape($service['icon']); ?>"></i> <?php echo $this->escape($service['title']); ?></h3>
-                                <p><?php echo $this->escape($service['description']); ?></p>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </div>
-                <?php }
-                        ?>
+        <div class="container">
+<?php foreach ($services as $service) {
+    ?> 
+                <div class="row">
+
+                    <div class="col-sm-6 col-md-3">
+                        <article class="part center-block">
+
+                            <figure>
+                                <h3 class="title">
+
+                                </h3>
+                                <figcaption class="text-center">
+                                    <h3><i class="<?php echo $this->escape($service['icon']); ?>"></i> <?php echo $this->escape($service['title']); ?></h3>
+                                    <p><?php echo $this->escape($service['description']); ?></p>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </div>
+<?php }
+?>
             </div>
         </div>
     </section>
 
     <section class="portfolio">
         <div class="container">
-            <h3 class="text-center">Check Out Our Products In Photo Galleries <br><?php if ($this->photoGalleriesPages) {?>
-		<small><a href="<?php echo $this->sitemapPageUrl($this->photoGalleriesPages['id']);?>">View all</a></small>
-                <?php }?></h3>
+            <h3 class="text-center">Check Out Our Products In Photo Galleries <br><?php if ($this->photoGalleriesPages) { ?>
+                    <small><a href="<?php echo $this->sitemapPageUrl($this->photoGalleriesPages['id']); ?>">View all</a></small>
+                <?php } ?></h3>
             <div class="row equal">
                 <?php
                 foreach ($photoGalleries as $photoGallery) {
-                ?>
-                <div class="col-xs-12 col-md-6 col-lg-4">
-                    
-                    <figure class="figure center-block">
-                        <img src="<?php echo $this->photoGalleryLeadingPhotoUrl($photoGallery); ?>"   class="img-responsive double" alt="">
-                        <a href="<?php echo $this->photoGalleryUrl($photoGallery); ?>"><figcaption class="figure-caption">
-                            <h4><?php echo $this->escape($photoGallery['title']); ?></h4>
-                        </figcaption></a>
+                    ?>
+                    <div class="col-xs-12 col-md-6 col-lg-4">
 
-                    </figure> 
-                </div>
-                <?php } ?>
-                 
+                        <figure class="figure center-block">
+                            <img src="<?php echo $this->photoGalleryLeadingPhotoUrl($photoGallery); ?>"   class="img-responsive double" alt="">
+                            <a href="<?php echo $this->photoGalleryUrl($photoGallery); ?>"><figcaption class="figure-caption">
+                                    <h4><?php echo $this->escape($photoGallery['title']); ?></h4>
+                                </figcaption></a>
+
+                        </figure> 
+                    </div>
+<?php } ?>
+
             </div>
         </div>
     </section>  
@@ -257,7 +262,7 @@ $this->headTitle($sitemapPage['title']);
                 <h2>You want to know what else can our team? Well, download and see</h2>
             </div>
             <div class="col-md-2">
-               <a href="<?php echo $this->baseUrl('/CV-Cubes-Bojan-Joncic.pdf');?>" target="_blank"> <button class="btn btn-default" type="button">Get Price List</button></a>
+                <a href="<?php echo $this->baseUrl('/CV-Cubes-Bojan-Joncic.pdf'); ?>" target="_blank"> <button class="btn btn-default" type="button">Get Price List</button></a>
             </div>
         </div>
     </section>
@@ -342,3 +347,11 @@ $this->headTitle($sitemapPage['title']);
         </div>
     </section>-->
 </main>
+//<?php
+//$this->inlineScript()->appendFile($this->baseUrl('/js/mixitup-master/Gruntfile.js'));
+//?>
+<script>
+//<?php $this->inlineScript()->captureStart(); ?>
+
+//<?php $this->inlineScript()->captureEnd(); ?>
+</script>

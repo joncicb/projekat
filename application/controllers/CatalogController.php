@@ -36,8 +36,8 @@ class CatalogController extends Zend_Controller_Action
         }
         $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
         $products = $cmsProductsDbTable->search(array(
-//            'filters' => array(
-//            ),
+            'filters' => array(
+            ),
             'orders' => array(
                 'order_number' => 'ASC',
             ),
@@ -81,9 +81,20 @@ class CatalogController extends Zend_Controller_Action
 			)
 		));
 		$productItem = $productItem[0];
+        $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
+        $products = $cmsProductsDbTable->search(array(
+            'filters' => array(
+            ),
+            'orders' => array(
+                'order_number' => 'ASC',
+            ),
+                //'limit' => 4,
+                //'page' => 2
+        ));
         $sitemapPageBreadcrumbs = $cmsSitemapPageDbTable->getSitemapPageBreadcrumbs($sitemapPageId);
         $this->view->breadcrumb = $sitemapPageBreadcrumbs;
         $this->view->sitemapPage = $sitemapPage;
         $this->view->productItem = $productItem;
+        $this->view->products =  $products;
     }
 }

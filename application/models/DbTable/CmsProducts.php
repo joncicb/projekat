@@ -5,8 +5,8 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 0;
     
-    const STATUS_ONACTION = 1;
-    const STATUS_NOTONACTION = 0;
+    const ACTION_ENABLED = 1;
+    const ACTION_DISABLED = 0;
 
     protected $_name = 'cms_products';
 
