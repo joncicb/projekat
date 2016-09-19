@@ -27,6 +27,15 @@ class IndexController extends Zend_Controller_Action
                 'order_number' => 'ASC'
             )
         ));
+        $cmsSuppliersNameDbTable = new Application_Model_DbTable_CmsSuppliers();
+        $suppliersName = $cmsSuppliersNameDbTable->search(array(
+            'filters' => array(
+                'name_search' => ''
+            ),
+            'orders' => array(
+                'order_number' => 'ASC'
+            )
+        ));
         $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
         $products = $cmsProductsDbTable->search(array(
             'filters' => array(
@@ -99,6 +108,8 @@ class IndexController extends Zend_Controller_Action
             'limit' => 4,
                 //'page' => 2
         ));
+        
+        $this->view->suppliersName=$suppliersName;
         $this->view->suppliers = $suppliers;
         $this->view->news = $news;
         $this->view->newsSitemapPage = $newsSitemapPage;

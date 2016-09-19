@@ -7,6 +7,7 @@ $servicesSitemapPage = $this->servicesSitemapPage;
 $photoGalleries = $this->photoGalleries;
 $photoGalleriesPages = $this->photoGalleriesPages;
 $products = $this->products;
+$suppliersName=$this->suppliersName;
 $this->headTitle($sitemapPage['title']);
 //$this->headMeta()->appendName('description', $sitemapPage['description']);
 ?>
@@ -82,14 +83,14 @@ $this->headTitle($sitemapPage['title']);
     <section class="container goods">
         <div class="row">
 
-            <!--            <div class="col-md-12 buttons">
+                        <div class="col-md-12 buttons">
                             
-                            `<?php foreach ($products as $product) {
+                            `<?php foreach ($suppliersName as $supplier) {
     ?>
-                                <button type="button" class="btn btn-primary down-arrow"><?php echo $this->escape($product['type']); ?></button>
+                                <button type="button" class="btn btn-primary down-arrow"><?php echo $this->escape($supplier['name']); ?></button>
 <?php }
 ?>  
-                        </div>-->
+                        </div>
 
 <?php foreach ($products as $product) {
     ?>
@@ -294,7 +295,7 @@ $this->headTitle($sitemapPage['title']);
                         </div><!-- /.col-lg-6 -->
                         <div class="col-xs-12">
                             <div class="input-group">
-                                <button class="btn btn-default formBtn" type="submit">Contact Us</button>
+                                <button id="mail-link" class="btn btn-default formBtn" type="button">Contact Us</button>
                             </div><!-- /input-group -->
                         </div>
 
@@ -347,11 +348,3 @@ $this->headTitle($sitemapPage['title']);
         </div>
     </section>-->
 </main>
-<?php
-//$this->inlineScript()->appendFile($this->baseUrl('/js/mixitup-master/Gruntfile.js'));
-//?>
-<script>
-//<?php $this->inlineScript()->captureStart(); ?>
-
-//<?php $this->inlineScript()->captureEnd(); ?>
-</script>

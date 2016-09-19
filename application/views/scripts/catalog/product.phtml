@@ -24,8 +24,8 @@ $this->headTitle($sitemapPage['title']);
             <div class="container">
                 <div class="row gallery">
                     <div class="col-xs-12">
-                        <h3 class="text-uppercase">Spyder® - Custom Headlights</h3>
-                        <p>in <a href="#"> Headlights</a></p>
+                        <h3 class="text-uppercase"><?php echo $this->escape($productItem['type']); ?></h3>
+                        
 
                     </div>
                     <div class="col-md-7">
@@ -35,51 +35,35 @@ $this->headTitle($sitemapPage['title']);
                             <div class="row">
 
                                 <div class="col-sm-12">
-                                    <div class="col-xs-12" id="slider">
-                                        <!-- Top part of the slider -->
-                                        <div class="row">
-                                            <div class="col-sm-12" id="carousel-bounding-box">
-                                                <div class="carousel slide" id="myCarousel">
-                                                    <!-- Carousel items -->
-                                                    <div class="carousel-inner">
-                                                        <div class="active item" data-slide-number="0">
-                                                           
-                                                            <img class="img-responsive" src="<?php echo $this->productImgUrl($productItem); ?>" alt=""/>
-                                                        </div>
 
-                                                        <div class="item" data-slide-number="1">
-                                                           <img class="img-responsive" src="/img/productGallery1.jpg" alt=""/>
-                                                        </div>
-
-                                                        <div class="item" data-slide-number="2">
-                                                            <img class="img-responsive" src="/img/productGallery2.jpg" alt=""/>
-                                                        </div>
-
-                                                        <div class="item" data-slide-number="3">
-                                                            <img class="img-responsive" src="/img/productGallery3.jpg" alt=""/>
-                                                        </div>
-
-                                                        <div class="item" data-slide-number="4">
-                                                           <img class="img-responsive" src="/img/productGallery4.jpg" alt=""/>
-                                                        </div>
-
-                                                        <div class="item" data-slide-number="5">
-                                                            <img class="img-responsive" src="/img/productGallery5.jpg" alt=""/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div class="">
+				<ul class="thumbnails row block projects list-unstyled" id="quicksand">
+                                    
+					<li class="col-md-4" data-id="1" data-type="print">
+						<div class="">
+							<div class="project">
+								<a class="lnk-polaroid" href="">
+									<img src="<?php echo $this->productImgUrl($productItem); ?>" alt="<?php echo $this->escape($photoGallery['title']); ?>" class="img-polaroid img-responsive" />
+								</a>
+								<h4 class="title">
+									<a href=""></a>
+								</h4>
+								<p class="muted"></p>
+							</div>
+						</div>
+					</li>
+                                          
+				</ul>
+			</div>
                                     <!--/Slider-->
                                 </div>
                                 <div class="col-sm-12" id="slider-thumbs">
                                      
-                                    <h4 class="text-uppercase">More photos</h4>
+                                    <h4 class="text-uppercase">More Products</h4>
                                     <ul class="hide-bullets clearfix">
                                        <?php foreach ($products as $product) { ?>   
                                     <li class="col-xs-3">
-                                        <a class="thumbnail" id="carousel-selector-1" href="<?php echo $this->productItemUrl($productItem); ?>"><img class="img-responsive" src="<?php echo $this->productImgUrl($product); ?>" alt=""/>
+                                        <a class="thumbnail" id="carousel-selector-1" href="<?php echo $this->productItemUrl($product); ?>"><img class="img-responsive" src="<?php echo $this->productImgUrl($product); ?>" alt=""/>
                                         
                                         </a>
                                  <p><?php echo $this->escape($product['model'] . ' '. $product['type']); ?></p>
@@ -117,24 +101,22 @@ $this->headTitle($sitemapPage['title']);
                             </div>
                         </div>-->
                         <div class="productType">
-                            <h4 class="text-uppercase">Type </h4>
-                            <button class="btn btn-default" type="button">Halogen</button>
-                            <button class="btn btn-default" type="button">Biksenon</button>
-                            <button class="btn btn-default" type="button">LED</button>
+<!--                            <h4 class="text-uppercase">Type </h4>
+                            <button class="btn btn-default" type="button"></button>-->
+                            
                             <h4 class="text-uppercase">Price </h4>
                             <div>
-                                <h2>$2849<sup>99</sup> </h2>
+                                <h2><?php echo $this->escape($productItem['price']); ?> RSD</h2>
                                 <button class="btn btn-primary">Buy now</button>
                             </div>
                         </div>
                         <div class="model">
                             <h4 class="text-uppercase">Compatible models </h4>
-                            <a href="#">BMW X3</a>,
-                            <a href="#">BMW X5</a>
+                            <h2><?php echo $this->escape($productItem['model']); ?></h2>
                         </div>
                         <div class="description">
                             <h4 class="text-uppercase">Description</h4>
-                            <p>Ea ullum liber aperiri mi, impetus ate philosophia ad duo, quem regione ne ius. Vis quis lobortis dissentias ex, in du aft philosophia, malis necessitatibus no mei. Volumus sensibus qui ex, eum duis doming ad. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+                            <p><?php echo $this->escape($productItem['description']); ?> </p>
                         </div>
                         <div class="technicalCharacteristics">
                             <h4 class="text-uppercase">Technical characteristics</h4>
@@ -171,7 +153,7 @@ $this->headTitle($sitemapPage['title']);
             </div>
         </section>
     <div>&nbsp</div>
-	<section class="featuredProducts">
+<!--	<section class="featuredProducts">
 	    <div class="container">
 		<div class="row">
                     <div class="col-md-12 buttons">
@@ -306,8 +288,8 @@ $this->headTitle($sitemapPage['title']);
                 </div>
 	    </div>
 	    
-	</section>
-        <section class="getPrice">
+	</section>-->
+<!--        <section class="getPrice">
             <div class="container">
                 <div class="col-md-10 text-center">
                     <h2>You want to know what else can our team? Well, download and see</h2>
@@ -316,7 +298,7 @@ $this->headTitle($sitemapPage['title']);
                     <button class="btn btn-default" type="button">Get Price</button>
                 </div>
             </div>
-        </section>
+        </section>-->
 	
     </main>
     <!--   MAIN SECTION END       -->
