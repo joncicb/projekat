@@ -287,4 +287,16 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
                 } 
                 }
     }
+    
+    public function actionDisable($id) {
+        $this->update(array(
+            'action' => self::ACTION_DISABLED
+                ), 'id = ' . $id);
+    }
+    
+    public function actionEnable($id) {
+        $this->update(array(
+            'action' => self::ACTION_ENABLED
+                ), 'id = ' . $id);
+    }
 }

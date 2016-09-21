@@ -109,6 +109,32 @@ class IndexController extends Zend_Controller_Action
                 //'page' => 2
         ));
         
+        $cmsProductsOnActionDbTable = new Application_Model_DbTable_CmsProducts();
+        $productsOnAction = $cmsProductsDbTable->search(array(
+           'filters' => array(
+               'action' => Application_Model_DbTable_CmsProducts::ACTION_ENABLED,
+               
+           ),
+           'orders' => array(
+                'order_number' => 'ASC',
+                
+            ),
+            'limit'=> 4
+       ));
+        
+        $cmsDateAdedDbTable = new Application_Model_DbTable_CmsProducts();
+        $productsByDateAded = $cmsDateAdedDbTable->search(array(
+           'filters' => array(
+               'stock_status' => Application_Model_DbTable_CmsProducts::STATUS_ENABLED
+           ),
+           'orders' => array(
+                'date' => 'DESC',
+                
+               
+            ),
+            'limit'=> 4
+       ));
+        
         $this->view->suppliersName=$suppliersName;
         $this->view->suppliers = $suppliers;
         $this->view->news = $news;
@@ -119,6 +145,8 @@ class IndexController extends Zend_Controller_Action
         $this->view->photoGalleries = $photoGalleries;
         $this->view->photoGalleriesPages = $photoGalleriesPages;
         $this->view->products = $products;
+        $this->view->productsOnAction = $productsOnAction;
+        $this->view->productsByDateAded = $productsByDateAded;
         
     }
 

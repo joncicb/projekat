@@ -7,7 +7,9 @@ $servicesSitemapPage = $this->servicesSitemapPage;
 $photoGalleries = $this->photoGalleries;
 $photoGalleriesPages = $this->photoGalleriesPages;
 $products = $this->products;
-$suppliersName=$this->suppliersName;
+$suppliersName= $this->suppliersName;
+$productsOnAction = $this->productsOnAction;
+$productsByDateAded = $this->productsByDateAded;
 $this->headTitle($sitemapPage['title']);
 //$this->headMeta()->appendName('description', $sitemapPage['description']);
 ?>
@@ -82,17 +84,36 @@ $this->headTitle($sitemapPage['title']);
 
     <section class="container goods">
         <div class="row">
+            <div class="col-md-12 buttons">
+                <button type="button" class="btn btn-primary down-arrow">On Action</button>
+            </div>
 
-                        <div class="col-md-12 buttons">
-                            
-                            `<?php foreach ($suppliersName as $supplier) {
+<?php foreach ($productsOnAction as $product) {
     ?>
-                                <button type="button" class="btn btn-primary down-arrow"><?php echo $this->escape($supplier['name']); ?></button>
-<?php }
-?>  
-                        </div>
+                <div class="col-sm-6 col-md-4 col-lg-3 <?php echo $this->escape($product['model']); ?>" >
 
-<?php foreach ($products as $product) {
+                    <article class="items center-block" >
+
+                        <figure>
+                            <a href="<?php echo $this->productItemUrl($product); ?>"><img class="img-responsive" src="<?php echo $this->productImgUrl($product); ?>" alt=""/></a>
+                            <figcaption>
+                                <a href="<?php echo $this->productItemUrl($product); ?>"> <h3><?php echo $this->escape($product['type']); ?></h3></a>
+                                <p><?php echo $this->escape($product['model']); ?></p>
+                                <button type="button" class="btn"><?php echo $this->escape($product['price']); ?></button>
+                            </figcaption>
+
+                        </figure>
+                    </article>
+
+                </div>
+<?php }
+?>
+            
+            <div class="col-xs-12 showMore"></div>
+            <div class="col-md-12 buttons">
+            <button type="button" class="btn items sale">New</button>
+            </div>
+            <?php foreach ($productsByDateAded as $product) {
     ?>
                 <div class="col-sm-6 col-md-4 col-lg-3 <?php echo $this->escape($product['model']); ?>" >
 
