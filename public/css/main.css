@@ -82,7 +82,7 @@ a.navbar-brand{
 }
 
 .navigation .navigation-bar ul:last-of-type{
-    /*    background: #005db4;*/
+/*    background: #005db4;*/
     padding: 0 15px;
     border-radius: 0 4px 4px 0;
 }
@@ -444,7 +444,7 @@ section.goods .items button{
     color: #195fad;
     border: 1px solid #bfddf4;
     background: transparent;
-
+    
 }
 section.goods .items button:hover{
     background:#195fad;
@@ -1304,7 +1304,7 @@ main.contactUs div.formContact > div.row  div{
 .productType button{
     color: #005db4;
     padding: 8px 10px;
-
+    
 }
 .productType button:hover{
     background-color: #fff000;
@@ -1322,7 +1322,7 @@ main.contactUs div.formContact > div.row  div{
     color: #fff;
     font-weight: bold;
     font-size: 18px;
-
+    
 }
 .productType div h2 + button:hover{
     color: #333;
@@ -1666,27 +1666,3 @@ main.registration div.tab-content form#registratinFormFirm select.form-control +
     padding-bottom: 30px;
 }
 
-.simplefilter li{
-    border: 1px solid transparent;
-    border-radius: 4px;
-    cursor: pointer;
-    display: inline-block;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    background-color:   #d5d5d5;
-    font-family: 'Ubuntu', sans-serif;
-    color: #000;
-    margin-right: 30px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.simplefilter li:hover{
-background-color: #195fad;
-color: #fff;
-}
