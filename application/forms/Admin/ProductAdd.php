@@ -2,11 +2,28 @@
 class Application_Form_Admin_ProductAdd extends Zend_Form
 {
     public function init() {
+
+        $cmsSuppliersDbTable = new Application_Model_DbTable_CmsSuppliers();
+            $suppliers = $cmsSuppliersDbTable->search(array(
+                'filters' => array(
+                ),
+                'orders' => array(
+                    'order_number' => 'ASC'
+                )
+            ));
+            
+            $data = array();
+            foreach ($suppliers as $supplier) {
+                $data[$supplier['id']] = $supplier['name']; 
+            }
+            $supplierCategories = new Zend_Form_Element_Select('supplier_categories');
+            $supplierCategories->addMultiOptions($data)->setRequired(true);
+            $this->addElement($supplierCategories);
         $model = new Zend_Form_Element_Text('model');
         //$model->addFilter(new Zend_Filter_StringTrim());
         //$model->addValidator(new Zend_Validate_StringLength(array('min'=>3, 'max'=>255)));
         $model->addFilter('StringTrim')
-                ->addValidator('StringLength', false, array('min'=>3, 'max'=>20))
+                ->addValidator('StringLength', false, array('min'=>2, 'max'=>20))
                 ->setRequired(true);
         $this->addElement($model);
         

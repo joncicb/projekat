@@ -34,6 +34,32 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
                         <legend>Edit Product - <?php echo $this->escape($this->product['model'] . ' ' . $this->product['type']); ?></legend>
 
                         <!-- Text input-->
+<!-- Multiple select-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="supplier_categories">Brand</label>  
+                            <div class="col-md-4">
+                                <?php
+                                    echo $form->getElement('supplier_categories')->setAttribs(array(
+                                        'class' => 'form-control input-md',
+                                        'id' => 'supplier_categories',
+                                        'required' => 'required'
+                                    ));
+                                ?>
+
+                            </div>
+                            <div class="col-md-4">
+                                <?php if ($form->getElement('supplier_categories')->hasErrors()) { ?>
+                                    <div class="has-error">
+                                        <?php foreach ($form->getElement('supplier_categories')->getMessages() as $message) { ?>
+                                            <p class="help-block"><?php echo $this->escape($message); ?></p>
+                                        <?php } ?>
+                                    </div>
+                                <?php } ?>
+
+
+                            </div>
+</div>
+
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="model">Model</label>  
@@ -46,16 +72,17 @@ $form->setElementDecorators(array('ViewHelper'));//za ispis gresaka u formi
           'required'=>'required'
       ));
       ?>
+  
   <span class="help-block">min 3 max 10 characters</span>  
   </div>
   <div class="col-md-4">
-      <?php if ($form->getElement('model')->hasErrors()) { ?>
-          <div class="has-error">
+      <?php if ($form->getElement('model')->hasErrors()) {?>
+      <div class="has-error">
               <?php foreach ($form->getElement('model')->getMessages() as $message) { ?>
                   <p class="help-block"><?php echo $this->escape($message); ?></p>
               <?php } ?>
           </div>
-      <?php } ?> 
+      <?php } ?>
   </div>
 </div>
 

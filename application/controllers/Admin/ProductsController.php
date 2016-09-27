@@ -9,7 +9,14 @@ class Admin_ProductsController extends Zend_Controller_Action {
             'success' => $flashMessenger->getMessages('success'),
             'errors' => $flashMessenger->getMessages('errors')
         );
-
+        $cmsSuppliersDbTable = new Application_Model_DbTable_CmsSuppliers();
+        $suppliers = $cmsSuppliersDbTable->search(array(
+                'filters' => array(
+                ),
+                'orders' => array(
+                    'order_number' => 'ASC'
+                )
+            ));
         $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
 
         $products = $cmsProductsDbTable->search(array(
@@ -26,7 +33,7 @@ class Admin_ProductsController extends Zend_Controller_Action {
             //'page' => 2
         ));
 
-
+        $this->view->suppliers = $suppliers;
         $this->view->products = $products;
 
         $this->view->systemMessages = $systemMessages;

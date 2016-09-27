@@ -36,6 +36,7 @@ $this->headTitle('Products');
                             <th class="text-center">On Stock</th>
                             <th class="text-center">On Action</th>
                             <th class="text-center">Img</th>
+                            <th class="text-center">Brand/Supplier ID</th>
                             <th class="text-center">Model</th>
                             <th>Part type</th>
                             <th>Price</th>
@@ -61,6 +62,7 @@ $this->headTitle('Products');
 <?php } ?>
                                     <td class="text-center"><span class="badge alert-danger" title="disabled"><i class="glyphicon glyphicon-remove"></i></span></td>
                                     <td class="text-center"><img style="max-height: 24px;" src="<?php echo $this->productImgUrl($product); ?>"></td>
+                                    <td class="text-center"><?php echo $this->escape($product['supplier_categories']); ?></td>
                                     <td class="text-center"><?php echo $this->escape($product['model']); ?></td>
                                     <td class="text-center"><?php echo $this->escape($product['type']); ?></td>
                                     <td class="text-center">
@@ -107,6 +109,7 @@ $this->headTitle('Products');
                                           <td class="text-center"><span class="badge alert-success" title="on"><i class="glyphicon glyphicon-ok"></i></span></td>
                                     <?php } ?>
                                     <td class="text-center"><img style="max-height: 24px;" src="<?php echo $this->productImgUrl($product); ?>"></td>
+                                    <td class="text-center"><?php echo $this->escape($product['supplier_categories']); ?></td>
                                     <td class="text-center"><?php echo $this->escape($product['model']); ?></td>
                                     <td class="text-center"><?php echo $this->escape($product['type']); ?></td>
                                     <td class="text-center">

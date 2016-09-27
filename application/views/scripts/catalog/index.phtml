@@ -1,6 +1,8 @@
 <?php
 $products = $this->products;
+$productss = $this->productss;
 $sitemapPage = $this->sitemapPage;
+$form = $this->form;
 $this->headTitle($sitemapPage['title']);
 //$this->headMeta()->appendName('description', $sitemapPage['description']);
 ?>
@@ -35,55 +37,39 @@ $this->headTitle($sitemapPage['title']);
         <div class="row">
             <div class="col-md-2">
                 <article class="row">
+                    <form role="form" method="post" action="">
+                        <input type="hidden" name="task" value="save">
                     <div class="col-xs-12">
                         <aside class="options">
                             <h2>Options<span class="glyphicon glyphicon-menu-down"></span></h2>
                             <div class="showOption">
-                                <article class="catalog">
-                                    <h2>Catalog</h2>
-                                    <div class="category">
-                                        <h3>Categoty name <span>x</span></h3>
-                                        <h4>Sub-categoty <span>x</span></h4>
-                                        <h4>Sub-categoty <span>x</span></h4>
-                                        <h4>Sub-categoty <span>x</span></h4>
-                                        <h4 class="active">Sub-categoty  <span>x</span></h4>
-                                        <h4>Sub-categoty <span>x</span></h4>
-                                    </div>
-                                </article>
+<!--                                <article class="catalog">
+                                    <h2>Select Brand</h2>
+                                    <div class="form-group">
+                                            <?php 
+                                                    echo  $form->getElement('supplier_categories')->setAttribs(array(
+                                                            'for' => 'supplier_categories'
+                                                    ));
+                                                    ?>
+                                        </div>
+                                </article>-->
                                 <article class="type">
-                                    <h2>Type</h2>
-                                    <form role="form">
+                                    <h2>Select Model</h2>
+                                    
                                         <div class="form-group">
-                                            <select class="form-control" id="sel1">
-                                                <option value="" disabled selected>Select type</option>
-                                                <option value="">1</option>
-                                                <option value="">2</option>
-                                                <option value="">3</option>
-                                                <option value="">4</option>
-                                            </select>
+                                            <?php 
+                                                    echo  $form->getElement('model')->setAttribs(array(
+                                                            'for' => 'model'
+                                                    ));
+                                                    ?>
                                         </div>
-                                    </form>
+                                    
                                 </article>
-                                <article class="radioButtons">
-                                    <h2>Radio buttons</h2>
-                                    <form role="form">
-                                        <div class="radio">
-                                            <label><input type="radio" name="optradio">Hard</label>
-                                        </div>
-                                        <div class="radio">
-                                            <label><input type="radio" name="optradio">Soft</label>
-                                        </div>
-
-                                    </form>
-                                </article>
-                                <article class="color">
-                                    <h2>Color</h2>
-                                    <h4><span class="lemon"></span> Lemon yellow</h4>
-                                    <h4><span class="pink"></span> Pink kitty</h4>
-                                </article>
-                                <article class="checkboxGroup">
-                                    <h2>Checkbox</h2>
-                                    <form role="form">
+                                
+                                
+<!--                                <article class="checkboxGroup">
+                                    <h2>Select Part Type</h2>
+                                    
                                         <div class="checkbox">
                                             <label><input type="checkbox" value="">Regular</label>
                                         </div>
@@ -94,23 +80,16 @@ $this->headTitle($sitemapPage['title']);
                                             <label><input type="checkbox" value="">Exclusive</label>
                                         </div>
 
-                                    </form>
-                                </article>
-                                <article class="rangeSlider clearfix">
-                                    <h2>Range</h2>
-                                    <div class="nstSlider" data-range_min="0" data-range_max="800" 
-                                         data-cur_min="50"  data-cur_max="524">
-
-                                        <div class="bar"></div>
-                                        <div class="leftGrip"></div>
-                                        <div class="rightGrip"></div>
-                                    </div>
-                                    <div class="leftLabel pull-left"></div>
-                                    <div class="rightLabel pull-right"></div>
-                                </article>
+                                    
+                                </article>-->
+                                
                             </div>
+                            
                         </aside>
+                        <div> <button class="btn-moj" type="submit">Search Products</button>
+                                   </div>
                     </div>
+                        </form>
                 </article>
             </div>
             

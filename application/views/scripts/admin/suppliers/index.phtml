@@ -29,6 +29,7 @@ $this->headTitle('Suppliers');
 							<th class="text-center">Img</th>
 							<th class="text-center">Status</th>
 							<th>Supplier Name</th>
+                                                        <th>Supplier ID</th>
 							<th>Description</th>
 							<th class="text-center">Action</th>
 						</tr>
@@ -43,6 +44,7 @@ $this->headTitle('Suppliers');
 							<td class="text-center"><span class="badge alert-danger" title="disabled"><i class="glyphicon glyphicon-remove"></i></span></td>
 							
                                                         <td><?php echo $this->escape($supplier['name']); ?></td><!--  escape je htmlspecialchars-->
+                                                        <td><?php echo $this->escape($supplier['id']); ?></td>
                                                         <td><?php echo $this->escape($supplier['description']); ?></td>
 							<td class="text-center">
 								<div class="btn-group btn-group-sm" role="group" aria-label="...">
@@ -64,6 +66,7 @@ $this->headTitle('Suppliers');
                                                         <td class="text-center"><img style="max-height: 24px;" src="<?php echo $this->supplierImgUrl($supplier); ?>"></td>
                                                         <td class="text-center"><span class="badge alert-success" title="enabled"><i class="glyphicon glyphicon-ok"></i></span></td>
 							<td><?php echo $this->escape($supplier['name']); ?></td>
+                                                        <td><?php echo $this->escape($supplier['id']); ?></td>
 							<td><?php echo $this->escape($supplier['description']); ?></td>
 							<td class="text-center">
 								<div class="btn-group btn-group-sm" role="group" aria-label="...">

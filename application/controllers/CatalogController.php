@@ -44,6 +44,71 @@ class CatalogController extends Zend_Controller_Action
                 //'limit' => 4,
                 //'page' => 2
         ));
+        
+        $form = new Application_Form_Frontend_FilterProducts();
+        
+        $form->populate(array(
+        ));
+
+         if ($request->isPost() && $request->getPost('task') === 'save') {
+            try {
+                
+                if (!$form->isValid($request->getPost())) {
+                    throw new Application_Model_Exception_InvalidInput('Invalid data was sent for products');
+                }
+                $formData = $form->getValues();
+
+                $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
+                
+                        if(empty($formData['supplier_categories'])){
+                           foreach ($products as $product) {
+                               $formData['supplier_categories'][] = $product['supplier_categories'];
+                           }
+                        }
+                        if(empty($formData['model'])){
+                           foreach ($products as $product) {
+                               $formData['model'][] = $product['model'];
+                           }
+                        }
+                        
+                        
+                $productss = $cmsProductsDbTable->search(array(
+                    'filters' => array(
+                        'status' => Application_Model_DbTable_CmsProducts::STATUS_ENABLED,
+                        'supplier_categories' => $formData['supplier_categories'],
+                        'model' => $formData['model'],
+                    ),
+                    'orders' => array(
+                        'order_number' => 'ASC',
+                    ),
+                        //'limit' => 4,
+                        //'page' => 2
+                ));
+              $this->view->productss = $productss;
+                
+            } catch (Application_Model_Exception_InvalidInput $ex) {
+                $systemMessages['errors'][] = $ex->getMessage();
+            }
+        } else {
+ 
+        $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
+        $productss = $cmsProductsDbTable->search(array(
+            'filters' => array(
+                'status' => Application_Model_DbTable_CmsProducts::STATUS_ENABLED
+            ),
+            'orders' => array(
+                'order_number' => 'ASC',
+            ),
+                //'limit' => 4,
+                //'page' => 2
+        ));
+        $this->view->productss =  $productss;
+       
+        }
+        
+        
+        
+        $this->view->form =  $form;
         $sitemapPageBreadcrumbs = $cmsSitemapPageDbTable->getSitemapPageBreadcrumbs($sitemapPageId);
 
         $this->view->products =  $products;

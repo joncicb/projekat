@@ -17,7 +17,7 @@ class IndexController extends Zend_Controller_Action
             try {
                 //check form is valid
                 if (!$form->isValid($request->getPost())) {
-                    throw new Application_Model_Exception_InvalidInput('Invalid form data bla bla');
+                    throw new Application_Model_Exception_InvalidInput('Invalid form data');
                 }
                 //get form data
                 $formData = $form->getValues();
@@ -61,15 +61,7 @@ class IndexController extends Zend_Controller_Action
                 'order_number' => 'ASC'
             )
         ));
-        $cmsSuppliersNameDbTable = new Application_Model_DbTable_CmsSuppliers();
-        $suppliersName = $cmsSuppliersNameDbTable->search(array(
-            'filters' => array(
-                'name_search' => ''
-            ),
-            'orders' => array(
-                'order_number' => 'ASC'
-            )
-        ));
+        
         $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
         $products = $cmsProductsDbTable->search(array(
             'filters' => array(
@@ -169,7 +161,7 @@ class IndexController extends Zend_Controller_Action
             'limit'=> 4
        ));
         
-        $this->view->suppliersName=$suppliersName;
+        
         $this->view->suppliers = $suppliers;
         $this->view->news = $news;
         $this->view->newsSitemapPage = $newsSitemapPage;
