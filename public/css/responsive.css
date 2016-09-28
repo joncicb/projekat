@@ -141,7 +141,7 @@ a.navbar-brand {
     font-size: 14px;
 }
 .search span button{
-    
+    margin-top: 10px;
     padding-left: 55px;
     padding-right: 55px;
 }

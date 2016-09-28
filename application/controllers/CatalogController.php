@@ -45,10 +45,7 @@ class CatalogController extends Zend_Controller_Action
                 'order_number' => 'ASC',
             )
                     ));
-        
-       
-        
-        
+
         
         $form = new Application_Form_Frontend_FilterProducts();
 
@@ -72,7 +69,10 @@ class CatalogController extends Zend_Controller_Action
                 
                 if(count($formData['model']) > 0){
                     $filters ['model'] = $formData['model'];
-                }      
+                }
+                if(count($formData['type']) > 0){
+                    $filters ['type'] = $formData['type'];
+                }
                         
                 $products = $cmsProductsDbTable->search(array(
                     'filters' => $filters,
@@ -103,9 +103,6 @@ class CatalogController extends Zend_Controller_Action
         $this->view->products =  $products;
        
         }
-        
-        
-        
         $this->view->form =  $form;
         $sitemapPageBreadcrumbs = $cmsSitemapPageDbTable->getSitemapPageBreadcrumbs($sitemapPageId);
 

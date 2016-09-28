@@ -38,7 +38,22 @@ class Application_Form_Frontend_FilterProducts extends Zend_Form
             $productModels->addMultiOptions($data)->setRequired(false);
             $this->addElement($productModels);    
                 
-             
+            $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
+            $products = $cmsProductsDbTable->search(array(
+                'filters' => array(
+                ),
+                'orders' => array(
+                    'order_number' => 'ASC'
+                )
+            ));
+            
+            $data = array();
+            foreach ($products as $product) {
+                $data[$product['type']] = $product['type'];
+            }
+            $productTypes = new Zend_Form_Element_Text('type');
+            $productTypes->setRequired(false);
+            $this->addElement($productTypes); 
                 
                
     }

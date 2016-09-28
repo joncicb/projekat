@@ -18,16 +18,21 @@ $this->headTitle($sitemapPage['title']);
 <main>
     <section class="search">
         <div class="container">
-            <form method="POST" >
+            <form method="get" action="">
+                <input type="hidden" name="task" value="save">
                 <div class="input-group">
-                    <span class="input-group-addon"></span>
-                    <input type="text" class="form-control" placeholder="Type here the name of spare parts, model car or VIN-code">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Find goods</button>
-                    </span>
+                    <?php
+                    echo $form->getElement('type')->setAttribs(array(
+                        'for' => 'type'
+                    ));
+                    ?>
+
                 </div>
+                <span>
+                    <button class="btn btn-default" type="submit">Find goods</button>
+                </span>
             </form>
-            <p>For example: <span>Сute cars parts </span> or <span> Cute-cute parts</span></p>
+            <p>For example: <span>Suspension </span> or <span> Brake set</span></p>
         </div>
     </section>
 
@@ -38,74 +43,73 @@ $this->headTitle($sitemapPage['title']);
                 <article class="row">
                     <form role="form" method="get" action="">
                         <input type="hidden" name="task" value="save">
-                    <div class="col-xs-12">
-                        <aside class="options">
-                            <h2>Options<span class="glyphicon glyphicon-menu-down"></span></h2>
-                            <div class="showOption">
-                                <article class="catalog">
-                                    <h2>Select Brand</h2>
-                                    <div class="checkbox-inline">
-                                        
-                                            <?php 
-                                                    echo  $form->getElement('supplier_categories')->setAttribs(array(
-                                                            'for' => 'supplier_categories'
-                                                    ));
-                                                    ?>
-                                        </div>
-                                </article>
-                                <article class="type">
-                                    <h2>Select Model</h2>
-                                    
+                        <div class="col-xs-12">
+                            <aside class="options">
+                                <h2>Options<span class="glyphicon glyphicon-menu-down"></span></h2>
+                                <div class="showOption">
+                                    <article class="catalog">
+                                        <h2>Select Brand</h2>
                                         <div class="checkbox-inline">
-                                            <?php 
-                                                    echo  $form->getElement('model')->setAttribs(array(
-                                                            'for' => 'model'
-                                                    ));
-                                                    ?>
+
+                                            <?php
+                                            echo $form->getElement('supplier_categories')->setAttribs(array(
+                                                'for' => 'supplier_categories'
+                                            ));
+                                            ?>
                                         </div>
-                                    
-                                </article>
-   
-                            </div>
-                            
-                        </aside>
-                        <div> <button class="btn-moj" type="submit">Search</button></div>
-                          <div><button class="btn-moj" type="reset">Reset</button>  
-                                   </div>
-                        
-                    </div>
-                        </form>
+                                    </article>
+                                    <article class="type">
+                                        <h2>Select Model</h2>
+
+                                        <div class="checkbox-inline">
+                                            <?php
+                                            echo $form->getElement('model')->setAttribs(array(
+                                                'for' => 'model'
+                                            ));
+                                            ?>
+                                        </div>
+
+                                    </article>
+
+                                </div>
+
+                            </aside>
+                            <section class="search">
+                                <span> <button class="btn-moj" type="submit">Search</button></span>
+                            </section>
+                        </div>
+                    </form>
                 </article>
             </div>
-            
+
             <div class="col-md-10">
                 <?php
-                    if(count($products) > 0){
-                        foreach ($products as $product) {
-                            ?>
-                            <div class="col-sm-6 col-md-4 col-lg-3">
+                if (count($products) > 0) {
+                    foreach ($products as $product) {
+                        ?>
+                        <div class="col-sm-6 col-md-4 col-lg-3">
 
-                                <article class="items center-block">
+                            <article class="items center-block">
 
-                                    <figure>
-                                        <a href="<?php echo $this->productItemUrl($product); ?>"><img class="img-responsive" src="<?php echo $this->productImgUrl($product); ?>" alt=""/></a>
-                                        <figcaption>
-                                            <a href="<?php echo $this->productItemUrl($product); ?>"> <h3><?php echo $this->escape($product['type']); ?></h3></a>
-                                            <p><?php echo $this->escape($product['model']); ?></p>
-                                            <button type="button" class="btn"><?php echo $this->escape($product['price']); ?></button>
-                                        </figcaption>
+                                <figure>
+                                    <a href="<?php echo $this->productItemUrl($product); ?>"><img class="img-responsive" src="<?php echo $this->productImgUrl($product); ?>" alt=""/></a>
+                                    <figcaption>
+                                        <a href="<?php echo $this->productItemUrl($product); ?>"> <h3><?php echo $this->escape($product['type']); ?></h3></a>
+                                        <p><?php echo $this->escape($product['model']); ?></p>
+                                        <button type="button" class="btn"><?php echo $this->escape($product['price']); ?></button>
+                                    </figcaption>
 
-                                    </figure>
-                                </article>
+                                </figure>
+                            </article>
 
-                            </div>
-                            <?php
-                        }
-                    }else{ 
-                        echo "Nema proizvoda za date kriterijume";
+                        </div>
+                        <?php
                     }
+                } else {
+                    echo "Nema proizvoda za date kriterijume";
+                }
                 ?>
-                
+
                 <div class="col-xs-12 showMore"></div>
             </div>
         </div>
@@ -124,55 +128,55 @@ $this->headTitle($sitemapPage['title']);
 
     <div class="container">
         <!-- Filter Controls - Simple Mode -->
-<!--        <div class="row text-center">  
-             A basic setup of simple mode filter controls, all you have to do is use data-filter="all"
-            for an unfiltered gallery and then the values of your categories to filter between them 
-            <ul class="simplefilter list-unstyled list-inline pull-left">
+        <!--        <div class="row text-center">  
+                     A basic setup of simple mode filter controls, all you have to do is use data-filter="all"
+                    for an unfiltered gallery and then the values of your categories to filter between them 
+                    <ul class="simplefilter list-unstyled list-inline pull-left">
+        
+                        <li class="active" data-filter="all">ALL</li>
+                        <li data-filter="1">ACTION</li>
+                        <li data-filter="2">NEW</li>
+                        <li data-filter="3">BERRIES</li>                        
+                    </ul>
+                </div>-->
 
-                <li class="active" data-filter="all">ALL</li>
-                <li data-filter="1">ACTION</li>
-                <li data-filter="2">NEW</li>
-                <li data-filter="3">BERRIES</li>                        
-            </ul>
-        </div>-->
 
 
-
-<!--        <div class="row">
-             This is the set up of a basic gallery, your items must have the categories they belong to in a data-category
-            attribute, which starts from the value 1 and goes up from there 
-            <div class="filtr-container">
-                <section class="goods">
-                    <div class="col-sm-6 col-md-4 col-lg-3 filtr-item" data-category="1" data-sort="FRUITS">
-                        <article class="items center-block">
-
-                            <figure>
-                                <a href="#"><img class="img-responsive" src="img/items3.png" alt=""/></a>
-                                <figcaption>
-                                    <a href="#"> <h3>KW Suspensions®</h3></a>
-                                    <p>Suspension Systems </p>
-                                    <button type="button" class="btn">$54<sup>99</sup></button>
-                                </figcaption>
-
-                            </figure>
-                        </article>
+        <!--        <div class="row">
+                     This is the set up of a basic gallery, your items must have the categories they belong to in a data-category
+                    attribute, which starts from the value 1 and goes up from there 
+                    <div class="filtr-container">
+                        <section class="goods">
+                            <div class="col-sm-6 col-md-4 col-lg-3 filtr-item" data-category="1" data-sort="FRUITS">
+                                <article class="items center-block">
+        
+                                    <figure>
+                                        <a href="#"><img class="img-responsive" src="img/items3.png" alt=""/></a>
+                                        <figcaption>
+                                            <a href="#"> <h3>KW Suspensions®</h3></a>
+                                            <p>Suspension Systems </p>
+                                            <button type="button" class="btn">$54<sup>99</sup></button>
+                                        </figcaption>
+        
+                                    </figure>
+                                </article>
+                            </div>
+                        </section>
+                        <div class="col-xs-6 col-sm-4 col-md-4 filtr-item" data-category="2" data-sort="VEGETABLES">
+                            <a href="#"><img class="img-responsive" src="img/items2.jpg" alt="sample image"></a>
+        
+                        </div>
+                        <div class="col-xs-6 col-sm-4 col-md-4 filtr-item" data-category="3" data-sort="BERRIES">
+                            <a href="#"><img class="img-responsive" src="img/items2.jpg" alt="sample image"></a>
+        
+                        </div>
+                        <div class="col-xs-6 col-sm-4 col-md-4 filtr-item" data-category="1" data-sort="FRUITS">
+                            <a href="#"><img class="img-responsive" src="img/items4.jpg" alt="sample image"></a>
+        
+                        </div>
+        
                     </div>
-                </section>
-                <div class="col-xs-6 col-sm-4 col-md-4 filtr-item" data-category="2" data-sort="VEGETABLES">
-                    <a href="#"><img class="img-responsive" src="img/items2.jpg" alt="sample image"></a>
-
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-4 filtr-item" data-category="3" data-sort="BERRIES">
-                    <a href="#"><img class="img-responsive" src="img/items2.jpg" alt="sample image"></a>
-
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-4 filtr-item" data-category="1" data-sort="FRUITS">
-                    <a href="#"><img class="img-responsive" src="img/items4.jpg" alt="sample image"></a>
-
-                </div>
-
-            </div>
-        </div>-->
+                </div>-->
 
 
 
