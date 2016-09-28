@@ -13,11 +13,12 @@ class Application_Form_Frontend_FilterProducts extends Zend_Form
             ));
             
             $data = array();
+            //$data[''] = [''];
             foreach ($suppliers as $supplier) {
                 $data[$supplier['id']] = $supplier['name']; 
             }
-            $supplierCategories = new Zend_Form_Element_Select('supplier_categories');
-            $supplierCategories->addMultiOptions($data)->setRequired(true);
+            $supplierCategories = new Zend_Form_Element_MultiCheckbox('supplier_categories');
+            $supplierCategories->addMultiOptions($data)->setRequired(false);
             $this->addElement($supplierCategories);
             
         $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
@@ -31,13 +32,13 @@ class Application_Form_Frontend_FilterProducts extends Zend_Form
             
             $data = array();
             foreach ($products as $product) {
-                $data[$product['id']] = $product['model']; 
+                $data[$product['model']] = $product['model']; 
             }
-            $productModels = new Zend_Form_Element_Select('model');
-            $productModels->addMultiOptions($data)->setRequired(true);
+            $productModels = new Zend_Form_Element_MultiCheckbox('model');
+            $productModels->addMultiOptions($data)->setRequired(false);
             $this->addElement($productModels);    
                 
-               
+             
                 
                
     }

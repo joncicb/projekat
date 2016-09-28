@@ -18,7 +18,7 @@ class ContactController extends Zend_Controller_Action
             try {
                 //check form is valid
                 if (!$form->isValid($request->getPost())) {
-                    throw new Application_Model_Exception_InvalidInput('Invalid form data bla bla');
+                    throw new Application_Model_Exception_InvalidInput('Invalid form data');
                 }
                 //get form data
                 $formData = $form->getValues();

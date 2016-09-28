@@ -9,82 +9,80 @@ class CatalogController extends Zend_Controller_Action
 
     public function indexAction()
  {
+        $flashMessenger = $this->getHelper('FlashMessenger');
+        
+        $systemMessages = array(
+            'success' => $flashMessenger->getMessages('success'),
+            'errors' =>  $flashMessenger->getMessages('errors'),
+        );
+        
+        
         $request = $this->getRequest();
-
+        
+        
         $sitemapPageId = (int) $request->getParam('sitemap_page_id');
-
-        if ($sitemapPageId <= 0) {
-            throw new Zend_Controller_Router_Exception('Invalid sitemap page id: ' . $sitemapPageId, 404);
-        }
-
         $cmsSitemapPageDbTable = new Application_Model_DbTable_CmsSitemapPages();
-
         $sitemapPage = $cmsSitemapPageDbTable->getSitemapPageById($sitemapPageId);
-
-        if (!$sitemapPage) {
-            throw new Zend_Controller_Router_Exception('No sitemap page is found for id: ' . $sitemapPageId, 404);
+        
+        if ($sitemapPageId <= 0) {
+            throw new Zend_Controller_Router_Exception('Invalid sitemap  is found with id ' . $sitemapPageId, 404);
+       }
+       if (!$sitemapPage) {
+           throw new Zend_Controller_Router_Exception('Invalid sitemap  is found with id ' . $sitemapPageId, 404);
         }
-
-        if (
-                $sitemapPage['status'] == Application_Model_DbTable_CmsSitemapPages::STATUS_DISABLED
-                //check if user is not logged in
-                //then preview is not available
-                //for disabled pages
-                && !Zend_Auth::getInstance()->hasIdentity()
+        if ( $sitemapPage['status'] == Application_Model_DbTable_CmsSitemapPages::STATUS_DISABLED
+                                    && !Zend_Auth::getInstance()->hasIdentity()
         ) {
-            throw new Zend_Controller_Router_Exception('Sitemap page is disabled', 404);
-        }
-        $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
-        $products = $cmsProductsDbTable->search(array(
+            throw new Zend_Controller_Router_Exception('No sitemap page is disabled ', 404);
+       }
+        
+        $cmsSuppliersDbTable = new Application_Model_DbTable_CmsSuppliers();
+        $suppliers = $cmsSuppliersDbTable->search(array(
             'filters' => array(
+                'status' => Application_Model_DbTable_CmsSuppliers::STATUS_ENABLED
             ),
             'orders' => array(
                 'order_number' => 'ASC',
-            ),
-                //'limit' => 4,
-                //'page' => 2
-        ));
+            )
+                    ));
+        
+       
+        
+        
         
         $form = new Application_Form_Frontend_FilterProducts();
-        
-        $form->populate(array(
-        ));
 
-         if ($request->isPost() && $request->getPost('task') === 'save') {
+         if ($request->isGet() && $request->getParam('task') === 'save') {
+             
             try {
-                
-                if (!$form->isValid($request->getPost())) {
-                    throw new Application_Model_Exception_InvalidInput('Invalid data was sent for products');
+                if (!$form->isValid($request->getParams())) {
+                     $this->getResponse()->setHttpResponseCode(404);
                 }
-                $formData = $form->getValues();
 
-                $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
+                $formData = $form->getValues();
                 
-                        if(empty($formData['supplier_categories'])){
-                           foreach ($products as $product) {
-                               $formData['supplier_categories'][] = $product['supplier_categories'];
-                           }
-                        }
-                        if(empty($formData['model'])){
-                           foreach ($products as $product) {
-                               $formData['model'][] = $product['model'];
-                           }
-                        }
+                $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
+                $filters = array(
+                    'stock_status' => Application_Model_DbTable_CmsProducts::STATUS_ENABLED
+                );
+                
+                if(count($formData['supplier_categories']) > 0){
+                    $filters ['supplier_categories'] = $formData['supplier_categories'];
+                }
+                
+                if(count($formData['model']) > 0){
+                    $filters ['model'] = $formData['model'];
+                }      
                         
-                        
-                $productss = $cmsProductsDbTable->search(array(
-                    'filters' => array(
-                        'status' => Application_Model_DbTable_CmsProducts::STATUS_ENABLED,
-                        'supplier_categories' => $formData['supplier_categories'],
-                        'model' => $formData['model'],
-                    ),
+                $products = $cmsProductsDbTable->search(array(
+                    'filters' => $filters,
                     'orders' => array(
                         'order_number' => 'ASC',
                     ),
                         //'limit' => 4,
                         //'page' => 2
                 ));
-              $this->view->productss = $productss;
+              $this->view->products = $products;
                 
             } catch (Application_Model_Exception_InvalidInput $ex) {
                 $systemMessages['errors'][] = $ex->getMessage();
@@ -92,7 +90,7 @@ class CatalogController extends Zend_Controller_Action
         } else {
  
         $cmsProductsDbTable = new Application_Model_DbTable_CmsProducts();
-        $productss = $cmsProductsDbTable->search(array(
+        $products = $cmsProductsDbTable->search(array(
             'filters' => array(
                 'status' => Application_Model_DbTable_CmsProducts::STATUS_ENABLED
             ),
@@ -102,7 +100,7 @@ class CatalogController extends Zend_Controller_Action
                 //'limit' => 4,
                 //'page' => 2
         ));
-        $this->view->productss =  $productss;
+        $this->view->products =  $products;
        
         }
         
@@ -111,7 +109,7 @@ class CatalogController extends Zend_Controller_Action
         $this->view->form =  $form;
         $sitemapPageBreadcrumbs = $cmsSitemapPageDbTable->getSitemapPageBreadcrumbs($sitemapPageId);
 
-        $this->view->products =  $products;
+        $this->view->suppliers = $suppliers;
         $this->view->sitemapPage = $sitemapPage;
         $this->view->breadcrumb = $sitemapPageBreadcrumbs;
     }

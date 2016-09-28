@@ -1,6 +1,5 @@
 <?php
 $products = $this->products;
-$productss = $this->productss;
 $sitemapPage = $this->sitemapPage;
 $form = $this->form;
 $this->headTitle($sitemapPage['title']);
@@ -37,26 +36,27 @@ $this->headTitle($sitemapPage['title']);
         <div class="row">
             <div class="col-md-2">
                 <article class="row">
-                    <form role="form" method="post" action="">
+                    <form role="form" method="get" action="">
                         <input type="hidden" name="task" value="save">
                     <div class="col-xs-12">
                         <aside class="options">
                             <h2>Options<span class="glyphicon glyphicon-menu-down"></span></h2>
                             <div class="showOption">
-<!--                                <article class="catalog">
+                                <article class="catalog">
                                     <h2>Select Brand</h2>
-                                    <div class="form-group">
+                                    <div class="checkbox-inline">
+                                        
                                             <?php 
                                                     echo  $form->getElement('supplier_categories')->setAttribs(array(
                                                             'for' => 'supplier_categories'
                                                     ));
                                                     ?>
                                         </div>
-                                </article>-->
+                                </article>
                                 <article class="type">
                                     <h2>Select Model</h2>
                                     
-                                        <div class="form-group">
+                                        <div class="checkbox-inline">
                                             <?php 
                                                     echo  $form->getElement('model')->setAttribs(array(
                                                             'for' => 'model'
@@ -65,55 +65,47 @@ $this->headTitle($sitemapPage['title']);
                                         </div>
                                     
                                 </article>
-                                
-                                
-<!--                                <article class="checkboxGroup">
-                                    <h2>Select Part Type</h2>
-                                    
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Regular</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Tuning</label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="">Exclusive</label>
-                                        </div>
-
-                                    
-                                </article>-->
-                                
+   
                             </div>
                             
                         </aside>
-                        <div> <button class="btn-moj" type="submit">Search Products</button>
+                        <div> <button class="btn-moj" type="submit">Search</button></div>
+                          <div><button class="btn-moj" type="reset">Reset</button>  
                                    </div>
+                        
                     </div>
                         </form>
                 </article>
             </div>
             
             <div class="col-md-10">
-                <?php foreach ($products as $product) {
-                    ?>
-                    <div class="col-sm-6 col-md-4 col-lg-3">
+                <?php
+                    if(count($products) > 0){
+                        foreach ($products as $product) {
+                            ?>
+                            <div class="col-sm-6 col-md-4 col-lg-3">
 
-                        <article class="items center-block">
+                                <article class="items center-block">
 
-                            <figure>
-                                <a href="<?php echo $this->productItemUrl($product); ?>"><img class="img-responsive" src="<?php echo $this->productImgUrl($product); ?>" alt=""/></a>
-                                <figcaption>
-                                    <a href="<?php echo $this->productItemUrl($product); ?>"> <h3><?php echo $this->escape($product['type']); ?></h3></a>
-                                    <p><?php echo $this->escape($product['model']); ?></p>
-                                    <button type="button" class="btn"><?php echo $this->escape($product['price']); ?></button>
-                                </figcaption>
+                                    <figure>
+                                        <a href="<?php echo $this->productItemUrl($product); ?>"><img class="img-responsive" src="<?php echo $this->productImgUrl($product); ?>" alt=""/></a>
+                                        <figcaption>
+                                            <a href="<?php echo $this->productItemUrl($product); ?>"> <h3><?php echo $this->escape($product['type']); ?></h3></a>
+                                            <p><?php echo $this->escape($product['model']); ?></p>
+                                            <button type="button" class="btn"><?php echo $this->escape($product['price']); ?></button>
+                                        </figcaption>
 
-                            </figure>
-                        </article>
+                                    </figure>
+                                </article>
 
-                    </div>
-                <?php }
+                            </div>
+                            <?php
+                        }
+                    }else{ 
+                        echo "Nema proizvoda za date kriterijume";
+                    }
                 ?>
+                
                 <div class="col-xs-12 showMore"></div>
             </div>
         </div>

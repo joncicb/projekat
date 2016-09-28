@@ -187,7 +187,7 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
                     case 'order_number':
                     case 'price':
                     case 'quantity':
-                    case 'discount':
+                    case 'supplier_categories':
                     case 'date':
                         
                         if($orderDirection === 'DESC'){
@@ -252,7 +252,7 @@ class Application_Model_DbTable_CmsProducts extends Zend_Db_Table_Abstract {
                     case 'order_number':
                     case 'price':
                     case 'quantity':
-                    case 'discount':
+                    case 'supplier_categories':
                     case 'date':
                         
                         if(is_array($value)){
