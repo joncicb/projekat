@@ -160,8 +160,7 @@ class IndexController extends Zend_Controller_Action
             ),
             'limit'=> 4
        ));
-        
-        
+
         $this->view->suppliers = $suppliers;
         $this->view->news = $news;
         $this->view->newsSitemapPage = $newsSitemapPage;

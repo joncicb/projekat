@@ -102,7 +102,14 @@ main.registration div.tab-content form#registratinForm select.form-control{
 main.registration div.tab-content form#registratinForm select.form-control + span{
     right: 5%;
 }
-
+.navbar-inverse .navbar-brand{
+    margin-bottom: 0px;
+    padding-top: 15px;
+    font-size: 24px;
+}
+.section80_20 p {
+    font-size: 14px;
+}
  
 
 }

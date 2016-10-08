@@ -20,7 +20,7 @@ $this->headTitle($sitemapPage['title']);
         <div class="container">
             <form method="get" action="">
                 <input type="hidden" name="task" value="save">
-                <div class="input-group">
+                <div class="input-group longer">
                     <?php
                     echo $form->getElement('type')->setAttribs(array(
                         'for' => 'type'
@@ -29,7 +29,7 @@ $this->headTitle($sitemapPage['title']);
 
                 </div>
                 <span>
-                    <button class="btn btn-default" type="submit">Find goods</button>
+                    <button class="btn btn-default find" type="submit">Find goods</button>
                 </span>
             </form>
             <p>For example: <span>Suspension </span> or <span> Brake set</span></p>
@@ -96,7 +96,7 @@ $this->headTitle($sitemapPage['title']);
                                     <figcaption>
                                         <a href="<?php echo $this->productItemUrl($product); ?>"> <h3><?php echo $this->escape($product['type']); ?></h3></a>
                                         <p><?php echo $this->escape($product['model']); ?></p>
-                                        <button type="button" class="btn"><?php echo $this->escape($product['price']); ?></button>
+                                        <button type="button" class="btn price"><?php echo $this->escape($product['price']); ?></button>
                                     </figcaption>
 
                                 </figure>
@@ -125,7 +125,27 @@ $this->headTitle($sitemapPage['title']);
             </div>
         </div>
     </section>
-
+    <!-- Modal -->
+<!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+	  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam a porttitor lectus. Quisque vitae bibendum mi,
+	      eu malesuada lacus. Praesent placerat sodales massa, non sodales odio iaculis ac. Cras volutpat, justo vitae fringilla tincidunt,
+	      nunc dolor vehicula nisl, ac aliquet tortor tellus vel ante. Maecenas euismod, ante in dictum gravida, magna leo porttitor sem,
+	      eu posuere lorem ligula quis turpis. Nam eget aliquam erat, vel ornare odio. Curabitur vitae lorem volutpat, 
+	      tristique augue eget, tincidunt lacus. Praesent in odio lorem. </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>-->
     <div class="container">
         <!-- Filter Controls - Simple Mode -->
         <!--        <div class="row text-center">  

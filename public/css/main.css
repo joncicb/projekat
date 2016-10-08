@@ -1609,6 +1609,8 @@ main.registration div.tab-content form#registratinFormFirm select.form-control +
 
 }*/
 
+
+
 .date:hover{
     background-color: white;
     color:#999;
@@ -1684,7 +1686,6 @@ margin-left: 15px;
 margin-bottom: 15px;
 margin-top: 15px;
 margin-right: 15px;
-
 }
 
 .btn-moj{
@@ -1702,3 +1703,37 @@ margin-right: 15px;
     background: transparent;  
 }
 
+
+ul li p img{
+    margin-bottom: 2px;
+}
+
+
+.navbar-inverse .navbar-brand{
+    margin-bottom: 20px;
+    padding-top: 15px;
+    font-size: 18px;
+}
+
+section.goods .items button.price:hover{
+    cursor: initial;
+    background-color: #fff;
+    color: #195fad;
+}
+
+.longer input{
+    width: 150%;
+}
+
+ .find{
+    width: 307px;
+    margin-top: 10px;
+}
+.section80_20 img{
+  height: 80px;
+
+}
+
+.section80_20 p{
+  font-size: 10px;  
+}
